@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { FunnelIcon } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
+import frame1 from "../../../Assets/frame1.png"
 import {
   selectAllProducts,
   fetchProductByFilterAsync,
@@ -115,29 +116,33 @@ const ProductSection = () => {
               </button>
             </div>
           </div>
-
-          <section aria-labelledby="products-heading" className="pb-24 pt-6">
-            <h2 id="products-heading" className="sr-only">
-              Products
-            </h2>
-
-            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-              {/* DESKTOP FILTER */}
-              <DesktopFilter handleFilter={handleFilter} filters={filters} />
-              {/* PRODUCT GRID */}
-              <div className="lg:col-span-3">
-                <ProductGrids products={products} status={status} />
-              </div>
-            </div>
-            <Pagination
-              handlePage={handlePage}
-              page={page}
-              setPage={setPage}
-              totalItems={totalItems}
-            />
-          </section>
         </main>
       </div>
+      <section aria-labelledby="products-heading" className="pb-24 pt-6">
+        <h2 id="products-heading" className="sr-only">
+          Products
+        </h2>
+
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+          {/* DESKTOP FILTER */}
+          <DesktopFilter handleFilter={handleFilter} filters={filters} />
+          {/* PRODUCT GRID */}
+          {/*  */}
+          <div className="lg:col-span-3">
+            <img src={frame1} className="mb-10 "></img>
+          </div>
+        </div>
+
+        <div className="lg:col-span-3">
+          <ProductGrids products={products} status={status} />
+        </div>
+        <Pagination
+          handlePage={handlePage}
+          page={page}
+          setPage={setPage}
+          totalItems={totalItems}
+        />
+      </section>
     </div>
   );
 };

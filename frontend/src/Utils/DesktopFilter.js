@@ -17,7 +17,7 @@ export const DesktopFilter = ({ handleFilter, filters }) => {
             <>
               <h3 className="-my-3 flow-root">
                 <DisclosureButton className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                  <span className="font-medium text-gray-900">
+                  <span className="font-medium text-gray-900 ml-10">
                     {section.name}
                   </span>
                   <span className="ml-6 flex items-center">
@@ -30,7 +30,7 @@ export const DesktopFilter = ({ handleFilter, filters }) => {
                 </DisclosureButton>
               </h3>
               <DisclosurePanel className="pt-6">
-                <div className="space-y-4">
+                <div className="space-y-4 ml-10">
                   {section.options.map((option, optionIdx) => (
                     <div key={option.value} className="flex items-center">
                       <input
