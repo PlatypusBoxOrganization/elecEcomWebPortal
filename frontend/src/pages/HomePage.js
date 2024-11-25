@@ -6,6 +6,9 @@ import CategorySection from "../Utils/CategorySection";
 import SalesSection from "../Utils/SalesSection";
 
 import Frame2 from "../Assets/frame2.png"
+import OurProducts from "../Utils/OurProducts";
+import NewArrivals from "../Utils/NewArrivals";
+import FeatureComponent from "../Utils/FeatureComponent";
 const HomePage = () => {
     return (
       <>
@@ -22,6 +25,11 @@ const HomePage = () => {
             <CategorySection />
             <BestSelling />
             <img src={Frame2} className="-pt-5 w-full" alt="error"></img>
+            <OurProducts />
+            <NewArrivals />
+            <div className="mx-30 my-10">
+              <FeatureComponent />
+            </div>
           </div>
         </div>
       </>

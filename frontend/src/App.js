@@ -6,6 +6,7 @@ import Login from "./features/auth/authComponent/Login";
 import NavBar from "./pages/NavBar";
 import HomePage from "./pages/HomePage";
 import ProductDetail from "./features/product/productComponent/ProductDetail";
+import Footer from "./pages/Footer";
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
           </Routes>
         
         </BrowserRouter>
+        <Footer/>
       </header>
     </div>
   );
