@@ -47,11 +47,15 @@ console.log("product in product detail", JSON.stringify(product, null, 2));
           {/* Product Image */}
           <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
             <div className="aspect-h-1 aspect-w-8 hidden   lg:block">
-              {/* <img
-                src={`/images/${product.images[0].url}`}
-                alt={product.name}
-                className="h-full w-full p-10 max-w-2xl object-cover rounded-lg object-center"
-              /> */}
+              {product.images && product.images.length > 0 ? (
+                <img
+                  src={`/images/${product.images[0].url}`}
+                  alt={product.name}
+                  className="h-full w-full p-10 max-w-2xl object-contain rounded-lg"
+                />
+              ) : (
+                <p>No image available</p> // Fallback message if images are not available
+              )}
             </div>
             <div className="mx-3 max-w-4xl">
               {/* Product price section */}
@@ -92,9 +96,24 @@ console.log("product in product detail", JSON.stringify(product, null, 2));
                 highlights
               </h2>
               <div className="mt-4 space-y-6">
-               {/* {product.specifications.map((spec) => (
-                  <p key={spec}>{spec}</p>
-                ))} */}
+                {product.specifications && product.specifications.features ? (
+                  <div>
+                    <p>
+                      <strong>Features:</strong>{" "}
+                      {product.specifications.features}
+                    </p>
+                    <p>
+                      <strong>Compatibility:</strong>{" "}
+                      {product.specifications.compatibility}
+                    </p>
+                    <p>
+                      <strong>Installation:</strong>{" "}
+                      {product.specifications.installation}
+                    </p>
+                  </div>
+                ) : (
+                  <p>No specifications available</p> // Fallback if specifications are missing
+                )}
               </div>
 
               <div className="w-full">
@@ -112,7 +131,7 @@ console.log("product in product detail", JSON.stringify(product, null, 2));
                           <button
                             // onClick={handleCart}
                             type="submit"
-                            className="mt-40 w-4xl flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 "
+                            className="mt-40 w-4xl flex items-center justify-center rounded-md border border-transparent bg-sky-600 px-8 py-3 text-base font-medium text-white hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 "
                           >
                             Add to Cart
                           </button>
