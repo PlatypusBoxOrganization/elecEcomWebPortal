@@ -27,6 +27,28 @@ export function verifyCode({ code }) {
   });
 }
 
+export async function resendOTP() {
+  try {
+    const response = await fetch("http://localhost:8000/auth/resend-otp", {
+      method: "POST",
+      credentials: "include", // Keeps the session or cookies
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) {
+      // If the response is not OK (status code 4xx or 5xx), throw an error
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to resend OTP");
+    }
+
+    const data = await response.json();
+    return data; // Return the success response data
+  } catch (error) {
+    console.error("Error while resending OTP:", error); // Optional: Log the error for debugging
+    throw error; // Throw the error to be handled by the caller
+  }
+}
+
 export function loginUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {

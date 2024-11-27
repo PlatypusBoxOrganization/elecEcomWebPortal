@@ -43,12 +43,12 @@ const Signup = () => {
       type: "password",
       validation: { required: "Password is required" },
     },
-    {
-      id: "confirmPassword",
-      label: "Confirm Password",
-      type: "password",
-      validation: { required: "Confirm Password is required" },
-    },
+    // {
+    //   id: "confirmPassword",
+    //   label: "Confirm Password",
+    //   type: "password",
+    //   validation: { required: "Confirm Password is required" },
+    // },
   ];
 
   const onSubmit = async (data) => {

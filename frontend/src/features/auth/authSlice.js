@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginUser, createUser,verifyCode} from "./authAPI";
+import { loginUser, createUser,verifyCode, resendOTP} from "./authAPI";
 // , signOut, checkAuth 
 const initialState = {
   loggedInUserToken: null, // this should only contain user identity => 'id'/'role'
@@ -7,6 +7,8 @@ const initialState = {
   error: null,
   isVerified: false,
   verificationError: null,
+  otpResent: false, // To track if OTP has been resent
+  otpError: null,
 };
 
 export const createUserAsync = createAsyncThunk(
@@ -35,7 +37,17 @@ export const verifyCodeAsync = createAsyncThunk(
   }
 );
 
-
+export const resendOtpAsync = createAsyncThunk(
+  "auth/resendOtp", // Action type
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await resendOTP(); // Call the API function
+      return response; // Return the success data
+    } catch (error) {
+      return rejectWithValue(error.message || "Failed to resend OTP"); // Return error message if it fails
+    }
+  }
+);
 
 export const loginUserAsync = createAsyncThunk(
   "auth/loginUser",
@@ -78,6 +90,20 @@ export const authSlice = createSlice({
         state.status = "idle";
         state.isVerified = false;
         state.verificationError = action.payload; // Error message from the backend
+      })
+      .addCase(resendOtpAsync.pending, (state) => {
+        state.status = 'loading';
+        state.otpResent = false;
+        state.otpError = null;
+      })
+      .addCase(resendOtpAsync.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.otpResent = true;
+        state.otpError = null;
+      })
+      .addCase(resendOtpAsync.rejected, (state, action) => {
+        state.status = 'failed';
+        state.otpError = action.payload || 'Failed to resend OTP';
       })
       .addCase(loginUserAsync.pending, (state) => {
         state.status = "loading";
