@@ -14,6 +14,19 @@ export function createUser(userData) {
   });
 }
 
+export function verifyCode({ code }) {
+  return new Promise(async (resolve) => {
+    const response = await fetch(`http://localhost:8000/auth/verify`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify({ code }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await response.json();
+    resolve({ data });
+  });
+}
+
 export function loginUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {

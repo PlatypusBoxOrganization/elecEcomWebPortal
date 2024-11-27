@@ -4,7 +4,7 @@ import ProductSection from "../features/product/productComponent/ProductSection"
 import BestSelling from "../Utils/BestSelling";
 import CategorySection from "../Utils/CategorySection";
 import SalesSection from "../Utils/SalesSection";
-
+import NavBar from "../pages/NavBar" ;
 import Frame2 from "../Assets/frame2.png"
 import OurProducts from "../Utils/OurProducts";
 import NewArrivals from "../Utils/NewArrivals";
@@ -19,6 +19,7 @@ const HomePage = () => {
             alt="error"
             style={{ height: "521px" }}
           ></img> */}
+          <NavBar/>
           <ProductSection />
           <div className="mx-20">
             <SalesSection />

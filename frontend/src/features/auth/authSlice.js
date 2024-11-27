@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginUser, createUser} from "./authAPI";
+import { loginUser, createUser,verifyCode} from "./authAPI";
 // , signOut, checkAuth 
 const initialState = {
   loggedInUserToken: null, // this should only contain user identity => 'id'/'role'
   status: "idle",
   error: null,
- 
+  isVerified: false,
+  verificationError: null,
 };
 
 export const createUserAsync = createAsyncThunk(
@@ -17,17 +18,24 @@ export const createUserAsync = createAsyncThunk(
   }
 );
 
-// export const loginUserAsync = createAsyncThunk(
-//   "auth/loginUser",
-//   async (loginInfo, { rejectWithValue }) => {
-//     try {
-//       const response = await loginUser(loginInfo);
-//       return response.data;
-//     } catch (error) {
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
+export const verifyCodeAsync = createAsyncThunk(
+  "auth/verifyCode",
+  async (code, { rejectWithValue }) => {
+    try {
+      const response = await verifyCode(code);
+      if (!response.data.success) {
+        // If the success flag is false, reject with the error message
+        return rejectWithValue(response.data.message);
+      }
+      return response.data; // This will resolve successfully if success is true
+    } catch (error) {
+      // Handle any error that occurs during the API call
+      return rejectWithValue("Unexpected error occurred");
+    }
+  }
+);
+
+
 
 export const loginUserAsync = createAsyncThunk(
   "auth/loginUser",
@@ -58,6 +66,19 @@ export const authSlice = createSlice({
         state.status = "idle";
         state.loggedInUserToken = action.payload;
       })
+      .addCase(verifyCodeAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(verifyCodeAsync.fulfilled, (state) => {
+        state.status = "idle";
+        state.isVerified = true;
+        state.verificationError = null;
+      })
+      .addCase(verifyCodeAsync.rejected, (state, action) => {
+        state.status = "idle";
+        state.isVerified = false;
+        state.verificationError = action.payload; // Error message from the backend
+      })
       .addCase(loginUserAsync.pending, (state) => {
         state.status = "loading";
       })
@@ -68,7 +89,7 @@ export const authSlice = createSlice({
       .addCase(loginUserAsync.rejected, (state, action) => {
         state.status = "idle";
         state.error = action.payload;
-      })
+      });
    
   },
 });
