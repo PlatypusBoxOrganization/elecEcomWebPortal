@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { verifyCodeAsync, resendOtpAsync } from "../authSlice"; // Assuming you have resendOtpAsync action in authSlice
 
 function Verification() {
-  const [code, setCode] = useState("");
+  const [verificationCode, setVerificationCode] = useState("");
   const [email, setEmail] = useState(""); // State for email input for resending OTP
   const [codeError, setCodeError] = useState(""); // State to track input error
   const [emailError, setEmailError] = useState(""); // State to track email input error
@@ -18,27 +18,33 @@ function Verification() {
 
   // Handle verification of the code
   const handleVerification = () => {
-    if (!code.trim()) {
+    if (!verificationCode.trim()) {
       setCodeError("Please enter the verification code.");
       return;
     }
     setCodeError(""); // Clear error if there's a code
-    dispatch(verifyCodeAsync(code)); // Dispatch the verification action
+    dispatch(verifyCodeAsync(verificationCode)); // Dispatch the verification action
   };
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
 
-  // Handle OTP resend functionality
-  const handleResendOtp = () => {
-    if (!email.trim()) {
-      setEmailError("Please enter your email address.");
-      return;
-    }
-    setEmailError(""); // Clear email error if there's an email
-    dispatch(resendOtpAsync(email)); // Dispatch action to resend OTP with email
-    setCode(""); // Clear the input field after sending OTP
-    setCodeError(""); // Clear any error message
-    setAttemptedWrongCode(false); // Reset wrong attempt tracker
-  };
+const handleResendOtp = () => {
+  if (!email.trim()) {
+    setEmailError("Please enter your email address.");
+    return;
+  }
+  if (!validateEmail(email)) {
+    setEmailError("Invalid email address.");
+    return;
+  }
 
+  setEmailError(""); // Clear email error
+  dispatch(resendOtpAsync(email)); // Dispatch action to resend OTP
+  setVerificationCode(""); // Clear the input field
+  setAttemptedWrongCode(false); // Reset wrong attempt tracker
+};
   // Redirect to homepage if verification is successful
   useEffect(() => {
     if (isVerified) {
@@ -66,8 +72,8 @@ function Verification() {
         <input
           type="text"
           placeholder="Enter Verification Code"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
+          value={verificationCode}
+          onChange={(e) => setVerificationCode(e.target.value)}
           className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 

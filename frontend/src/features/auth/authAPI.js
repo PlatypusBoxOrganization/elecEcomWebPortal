@@ -14,12 +14,12 @@ export function createUser(userData) {
   });
 }
 
-export function verifyCode({ code }) {
+export function verifyCode({ verificationCode }) {
   return new Promise(async (resolve) => {
     const response = await fetch(`http://localhost:8000/auth/verify`, {
       method: "POST",
       credentials: "include",
-      body: JSON.stringify({ code }),
+      body: JSON.stringify({ verificationCode}),
       headers: { "Content-Type": "application/json" },
     });
     const data = await response.json();
@@ -27,16 +27,16 @@ export function verifyCode({ code }) {
   });
 }
 
-export async function resendOTP() {
+export async function resendOTP(email) {
   try {
     const response = await fetch("http://localhost:8000/auth/resend-otp", {
       method: "POST",
       credentials: "include", // Keeps the session or cookies
       headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }), // Include the email in the request
     });
 
     if (!response.ok) {
-      // If the response is not OK (status code 4xx or 5xx), throw an error
       const errorData = await response.json();
       throw new Error(errorData.message || "Failed to resend OTP");
     }
@@ -44,8 +44,8 @@ export async function resendOTP() {
     const data = await response.json();
     return data; // Return the success response data
   } catch (error) {
-    console.error("Error while resending OTP:", error); // Optional: Log the error for debugging
-    throw error; // Throw the error to be handled by the caller
+    console.error("Error while resending OTP:", error);
+    throw error;
   }
 }
 
