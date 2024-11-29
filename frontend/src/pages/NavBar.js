@@ -55,64 +55,45 @@ const NavBar = () => {
           <>
             <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
               <div className="flex h-16 items-center justify-between">
-                {/* Logo and Navigation */}
+                {/* Logo */}
                 <div className="flex items-center">
                   <Link
                     to="/"
-                    className="text-gray-900  text-2xl font-bold hover:text-black pl-20"
+                    className="text-gray-900 text-2xl font-bold hover:text-black"
                   >
                     Exclusive
                   </Link>
-                  <div className="hidden md:block ml-10 space-x-4">
-                    {navigation
-                      // .filter((item) => item[userInfo.role])
-                      .map((item) => (
-                        <Link
-                          key={item.name}
-                          to={item.link}
-                          className={navItemClasses(item.current)}
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
-                  </div>
                 </div>
 
-                {/* Cart and Profile */}
+                {/* Desktop Navigation */}
+                <div className="hidden md:flex items-center space-x-6">
+                  {navigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.link}
+                      className={navItemClasses(item.current)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Icons */}
                 <div className="hidden md:flex items-center space-x-4">
                   <input
                     type="text"
                     placeholder="What are you looking for?"
-                    class="w-full  pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  /> 
-                  <MagnifyingGlassIcon className="h-10 w-10"></MagnifyingGlassIcon>
-
+                    className="w-full pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <MagnifyingGlassIcon className="h-6 w-6 text-gray-500" />
                   <Link to="/wishlist">
-                    <button className="rounded-full  p-1 text-gray-900 bg-white hover:text-black">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="size-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-                        />
-                      </svg>
-                    </button>
+                    <HeartIcon className="h-6 w-6 text-gray-500 hover:text-black" />
                   </Link>
                   <Link to="/cart">
-                    <button className="rounded-full  p-1 text-gray-900 hover:text-black">
-                      <ShoppingCartIcon className="h-6 w-6" />
-                    </button>
+                    <ShoppingCartIcon className="h-6 w-6 text-gray-500 hover:text-black" />
                   </Link>
-
                   <Menu as="div" className="relative">
-                    <MenuButton className="flex items-center rounded-full bg-gray-800 text-sm">
+                    <MenuButton>
                       <img
                         className="h-8 w-8 rounded-full"
                         src="/images/def.png"
@@ -144,47 +125,46 @@ const NavBar = () => {
                 </div>
 
                 {/* Mobile Menu Button */}
-                <DisclosureButton className="md:hidden rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white">
+                <Disclosure.Button className="md:hidden rounded-md bg-gray-200 p-2 text-gray-800 hover:bg-gray-300">
                   {open ? (
                     <XMarkIcon className="h-6 w-6" />
                   ) : (
                     <Bars3Icon className="h-6 w-6" />
                   )}
-                </DisclosureButton>
+                </Disclosure.Button>
               </div>
             </div>
 
             {/* Mobile Menu */}
-            <DisclosurePanel className="md:hidden bg-gray-800">
-              <div className="space-y-1 px-2">
-                {navigation
-                  // .filter((item) => item[userInfo.role])
-                  .map((item) => (
-                    <DisclosureButton
-                      key={item.name}
-                      as="a"
-                      href={item.link}
-                      className={navItemClasses(item.current)}
-                    >
-                      {item.name}
-                    </DisclosureButton>
-                  ))}
+            <Disclosure.Panel className="md:hidden bg-gray-50">
+              <div className="space-y-2 px-4">
+                {navigation.map((item) => (
+                  <Disclosure.Button
+                    key={item.name}
+                    as={Link}
+                    to={item.link}
+                    className="block text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-center"
+                  >
+                    {item.name}
+                  </Disclosure.Button>
+                ))}
               </div>
-              <div className="border-t border-gray-700 px-2">
+              <div className="border-t border-gray-200 mt-2 px-4">
                 {dropdownLinks.map((link) => (
                   <Link
                     key={link.name}
                     to={link.link}
-                    className="block px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                    className="block text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-center"
                   >
                     {link.name}
                   </Link>
                 ))}
               </div>
-            </DisclosurePanel>
+            </Disclosure.Panel>
           </>
         )}
       </Disclosure>
+
       {/* )} */}
     </>
   );

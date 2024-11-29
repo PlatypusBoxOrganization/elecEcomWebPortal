@@ -5,14 +5,14 @@ const ProductCard = ({ product }) => {
   console.log(product);
   return (
     <>
-      <Link
+     <Link
         to={`/productDetail/${product._id}`}
         key={product._id}
         className="group"
       >
         {!product.deleted && (
           <div className="pro ">
-            <div className="aspect-h-2 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-4 xl:aspect-w-7">
+            <div className="w-full aspect-h-1 aspect-w-2 overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-4 xl:aspect-w-7">
               <img
                 src={`/images/${product.images[0].url}`} // Ensure the URL is correctly constructed
                 alt={product.name}
@@ -46,7 +46,8 @@ const ProductCard = ({ product }) => {
             </div>
           </div>
         )}
-      </Link>
+      </Link> 
+    
     </>
   );
 };
