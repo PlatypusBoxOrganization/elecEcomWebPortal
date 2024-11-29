@@ -8,10 +8,10 @@ import {
   MenuItems,
   Transition,
 } from "@headlessui/react";
-import { Bars3Icon, MagnifyingGlassCircleIcon, ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { HeartIcon, MagnifyingGlassIcon, SwatchIcon } from "@heroicons/react/20/solid";
+import { HeartIcon, MagnifyingGlassIcon} from "@heroicons/react/20/solid";
 import { Hearts, MagnifyingGlass } from "react-loader-spinner";
 // import { selectLoggedInUser } from "../features/auth/authSlice";
 // import { selectedItems } from "../../features/cart/cartSlice";
