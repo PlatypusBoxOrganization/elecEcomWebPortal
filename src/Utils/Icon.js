@@ -1,9 +1,9 @@
-import { DevicePhoneMobileIcon } from "@heroicons/react/24/outline";
-import { ComputerDesktopIcon } from "@heroicons/react/24/outline";
-import { ClockIcon } from "@heroicons/react/24/outline";
-import { CameraIcon } from "@heroicons/react/24/outline";
-import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
-import { CubeIcon } from "@heroicons/react/24/outline";
+import { DevicePhoneMobileIcon } from "@heroicons/react/outline";
+import { ComputerDesktopIcon } from "@heroicons/react/outline";
+import { ClockIcon } from "@heroicons/react/outline";
+import { CameraIcon } from "@heroicons/react/outline";
+import { SpeakerWaveIcon } from "@heroicons/react/outline";
+import { CubeIcon } from "@heroicons/react/outline";
 
 export const mobile = DevicePhoneMobileIcon;
 export const desktop = ComputerDesktopIcon;

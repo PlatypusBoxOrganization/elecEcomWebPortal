@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import { ChevronRightIcon } from "@heroicons/react/solid";
 import qr from "../Assets/QrCode.png";
 import play from "../Assets/GooglePlay.png";
 import appstore from "../Assets/QrCode.png";

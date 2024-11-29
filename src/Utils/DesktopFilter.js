@@ -3,7 +3,7 @@ import {
   DisclosurePanel,
   Disclosure,
 } from "@headlessui/react";
-import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
+import { MinusIcon, PlusIcon } from "@heroicons/react/solid";
 export const DesktopFilter = ({ handleFilter, filters }) => {
   return (
     <form className="hidden lg:block">

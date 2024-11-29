@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 
 export const Pagination = ({ handlePage, page, setPage, totalItems }) => {
   const totalPage = Math.ceil(totalItems / 10);
