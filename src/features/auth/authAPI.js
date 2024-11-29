@@ -1,7 +1,7 @@
 export function createUser(userData) {
   return new Promise(async (resolve) => {
     const response = await fetch(
-      `http://localhost:8000/auth/signup`,
+      ` https://electronicbackenddev-309081727732.asia-east1.run.app/auth/signup`,
       {
         method: "POST",
         credentials: "include",
@@ -16,12 +16,15 @@ export function createUser(userData) {
 
 export function verifyCode({ verificationCode }) {
   return new Promise(async (resolve) => {
-    const response = await fetch(`http://localhost:8000/auth/verify`, {
-      method: "POST",
-      credentials: "include",
-      body: JSON.stringify({ verificationCode}),
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await fetch(
+      ` https://electronicbackenddev-309081727732.asia-east1.run.app/auth/verify`,
+      {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify({ verificationCode }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     const data = await response.json();
     resolve({ data });
   });
@@ -29,12 +32,15 @@ export function verifyCode({ verificationCode }) {
 
 export async function resendOTP(email) {
   try {
-    const response = await fetch("http://localhost:8000/auth/resend-otp", {
-      method: "POST",
-      credentials: "include", // Keeps the session or cookies
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }), // Include the email in the request
-    });
+    const response = await fetch(
+      " https://electronicbackenddev-309081727732.asia-east1.run.app/auth/resend-otp",
+      {
+        method: "POST",
+        credentials: "include", // Keeps the session or cookies
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }), // Include the email in the request
+      }
+    );
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -53,7 +59,7 @@ export function loginUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/auth/login`,
+        ` https://electronicbackenddev-309081727732.asia-east1.run.app/auth/login`,
         {
           method: "POST",
           credentials: "include",
