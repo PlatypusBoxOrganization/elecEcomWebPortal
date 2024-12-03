@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { FunnelIcon } from "@heroicons/react/solid";
+import { FunnelIcon } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
 import frame1 from "../../../Assets/frame1.png"
 import {

@@ -8,10 +8,14 @@ import {
   MenuItems,
   Transition,
 } from "@headlessui/react";
-import { Bars3Icon, MagnifyingGlassCircleIcon, ShoppingCartIcon, XMarkIcon } from "@heroicons/react/outline";
+import {
+  Bars3Icon,
+  ShoppingCartIcon,
+ XMarkIcon
+} from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { HeartIcon, MagnifyingGlassIcon, SwatchIcon } from "@heroicons/react/solid";
+
 import { Hearts, MagnifyingGlass } from "react-loader-spinner";
 // import { selectLoggedInUser } from "../features/auth/authSlice";
 // import { selectedItems } from "../../features/cart/cartSlice";
@@ -85,9 +89,9 @@ const NavBar = () => {
                     placeholder="What are you looking for?"
                     className="w-full pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <MagnifyingGlassIcon className="h-6 w-6 text-gray-500" />
+                  {/* <MagnifyingGlassIcon className="h-6 w-6 text-gray-500" /> */}
                   <Link to="/wishlist">
-                    <HeartIcon className="h-6 w-6 text-gray-500 hover:text-black" />
+                    {/* <HeartIcon className="h-6 w-6 text-gray-500 hover:text-black" /> */}
                   </Link>
                   <Link to="/cart">
                     <ShoppingCartIcon className="h-6 w-6 text-gray-500 hover:text-black" />
