@@ -1,11 +1,4 @@
 
-
-// export const mobile = <i class="fa-solid fa-mobile"></i>;
-// export const desktop = <i class="fa-solid fa-computer"></i>;
-// export const clock = <i class="fa-solid fa-clock"></i>;
-// export const camera = <i class="fa-solid fa-camera"></i>;
-// export const headphone = <i class="fa-solid fa-headphones"></i>;
-// export const gamepad = <i class="fa-solid fa-gamepad"></i>;
 import { DevicePhoneMobileIcon } from "@heroicons/react/24/outline";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import { ComputerDesktopIcon } from "@heroicons/react/24/outline";

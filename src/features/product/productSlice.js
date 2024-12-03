@@ -4,6 +4,7 @@ import {
   fetchAllProduct,
   fetchProductById,
   fetchProductsByFilter,
+  updateProduct,
 } from "./productAPI";
 // fetchAllProducts,
 const initialState = {
@@ -35,8 +36,8 @@ export const fetchAllProductAsync = createAsyncThunk(
 //ASYNCTHUNK FOR PRODUCT UPDATION
 export const createProductAsync = createAsyncThunk(
   "product/createProduct",
-  async (product) => {
-    const response = await createProduct(product);
+  async (productFormData) => {
+    const response = await createProduct(productFormData);
     return response.data;
   }
 );
@@ -45,6 +46,14 @@ export const fetchProductByFilterAsync = createAsyncThunk(
   "product/fetchProductByFilter",
   async ({ category, page, limit, sort }) => {
     const response = await fetchProductsByFilter(category, page, limit, sort);
+    return response.data;
+  }
+);
+
+export const updateProductAsync = createAsyncThunk(
+  "product/updateProduct",
+  async (product) => {
+    const response = await updateProduct(product);
     return response.data;
   }
 );

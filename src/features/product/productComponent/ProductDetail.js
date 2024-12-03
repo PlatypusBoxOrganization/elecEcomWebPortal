@@ -1,151 +1,165 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Heart, ShoppingCart, TruckIcon, RefreshCw } from "lucide-react";
+import Wearable from "../../../Assets/Wearable.jpg"
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchProductByIdAsync,
-  selectProductById,
-} from "../productSlice";
+import { fetchProductByIdAsync, selectProductById } from "../productSlice";
 import { useParams } from "react-router-dom";
-// import { addToCartAsync, selectedItems } from "../../cart/cartSlice";
 import Rating from "../../../Utils/Rating";
-
 const ProductDetail = () => {
-     const product = useSelector(selectProductById);
+    const [selectedSize, setSelectedSize] = useState("M");
+    const [quantity, setQuantity] = useState(1);
+    const [selectedColor, setSelectedColor] = useState("white");
+
+    const productImages = [Wearable , Wearable , Wearable ,Wearable];
+    const product = useSelector(selectProductById)
+  const ProductGridView = ({ images }) => {
+  return (
+    <div className="grid grid-cols-4 gap-4">
+      {images.map((imageUrl, i) => (
+        <div key={i} className="bg-gray-100 rounded-lg p-2">
+          <img
+            src={imageUrl}
+            alt={`Product view ${i + 1}`}
+            className="w-full object-contain"
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
   const dispatch = useDispatch();
 
   const params = useParams();
-  useEffect(() => {
-    console.log("Product ID from useParams:", params.id);
-    dispatch(fetchProductByIdAsync(params.id));
-  }, [dispatch, params.id]);
-console.log("product in product detail", JSON.stringify(product, null, 2));
-//   const handleCart = (e) => {
-//     e.preventDefault();
-
-//     if (items.findIndex((item) => item.product.id === product.id) < 0) {
-//       const newItem = {
-//         product: product.id,
-
-//         quantity: 1,
-//       };
-
-//      //TO PREVENT PRODUCT ID TO BE EQUAL TO CART ITEM ID WE ARE DELETING THE PRODUCT ID AS IF DIFFERENT USER ORDER SAME PRODUCT WILL THROW ERROR
-//     //   dispatch(addToCartAsync(newItem));
-//     } else {
-//       alert("item already added");
-//     }
-//   };
-    return (
-      <div className="bg-white">
-        <div className="pt-6">
-          {/* Product Name */}
-
-          <div className="flex items-center">
-            <h1 className="text-2xl ml-10 mb-10 font-bold tracking-tight text-gray-900 sm:text-3xl">
-              {product.name}
-            </h1>
+ useEffect(() => {
+   // console.log("user of Product details" +user);
+   dispatch(fetchProductByIdAsync(params.id));
+ }, [dispatch, params.id]);
+  return (
+    <div className="max-w-7xl mx-auto p-8 font-montserrat">
+      <h1 className="text-black text-2xl">
+        <span className="text-gray-300">{product.category}</span>/{product.name}
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Product Images */}
+        <div className="space-y-4">
+          <div className="bg-gray-100 rounded-lg p-8">
+            <img
+              src={Wearable}
+              alt="Havic HV G-92 Gamepad"
+              className="w-full object-contain"
+            />
           </div>
-          {/* Product Image */}
-          <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-            <div className="aspect-h-1 aspect-w-8 hidden   lg:block">
-              {product.images && product.images.length > 0 ? (
-                <img
-                  src={`/images/${product.images[0].url}`}
-                  alt={product.name}
-                  className="h-full w-full p-10 max-w-2xl object-contain rounded-lg"
-                />
-              ) : (
-                <p>No image available</p> // Fallback message if images are not available
-              )}
+          <ProductGridView images={productImages} />
+        </div>
+
+        {/* Product Details */}
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-3xl font-bold">{product.name}</h1>
+           
+            <div className="mt-2 Rating flex inline-flex justify-between">
+              <p className="pr-4">{product.rating}</p>
+              <Rating value={product.rating} />
+              <p className="mt-0 pl-3 text-sm text-gray-700">
+                from {product.numReviews} Reviews
+              </p>
             </div>
-            <div className="mx-3 max-w-4xl">
-              {/* Product price section */}
-              <div className="Price align-items w-full flex flex-row ">
-                <p className="mt-8 text-3xl font-medium text-gray-900">
-                  Rs &nbsp;
-                  {product.discountPrice}
-                </p>
-                <p className="mt-8 text-3xl pl-3 font-medium text-gray-500 line-through">
-                  {product.price}Rs
-                </p>
-                <p className="mt-8 text-3xl pl-3 font-medium text-green-500 ">
-                  {product.discountPercentage}% OFF
+            <p className="text-2xl font-bold mt-4">{product.discountPrice}</p>
+            <p className="mt-4 text-gray-600">
+              PlayStation 5 Controller Skin High-quality vinyl with air release
+              channels for easy bubble free install & mess free removal
+            </p>
+          </div>
+
+          {/* Color Selection */}
+          <div>
+            <p className="font-semibold mb-2">Colours:</p>
+            <div className="flex gap-2">
+              {["white", "black"].map((color) => (
+                <button
+                  key={color}
+                  onClick={() => setSelectedColor(color)}
+                  className={`w-6 h-6 rounded-full border-2 ${
+                    selectedColor === color
+                      ? "border-blue-500"
+                      : "border-gray-300"
+                  }`}
+                  style={{ backgroundColor: color }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Size Selection */}
+          <div>
+            <p className="font-semibold mb-2">Size:</p>
+            <div className="flex gap-2">
+              {["XS", "S", "M", "L", "XL"].map((size) => (
+                <button
+                  key={size}
+                  onClick={() => setSelectedSize(size)}
+                  className={`px-4 py-2 border rounded ${
+                    selectedSize === size
+                      ? "bg-red-500 text-white"
+                      : "border-gray-300"
+                  }`}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Quantity and Add to Cart */}
+          <div className="flex gap-4">
+            <div className="flex items-center border rounded">
+              <button
+                onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+                className="px-4 py-2 border-r"
+              >
+                -
+              </button>
+              <span className="px-4 py-2">{quantity}</span>
+              <button
+                onClick={() => setQuantity(quantity + 1)}
+                className="px-4 py-2 border-l"
+              >
+                +
+              </button>
+            </div>
+            <button className="flex-1 bg-red-500 text-white py-2 px-4 rounded">
+              Buy Now
+            </button>
+            <button className="p-2 border rounded">
+              <Heart className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Delivery Info */}
+          <div className="space-y-4 border-t pt-4">
+            <div className="flex items-center gap-2">
+              <TruckIcon className="w-6 h-6" />
+              <div>
+                <p className="font-semibold">Free Delivery</p>
+                <p className="text-sm text-gray-600">
+                  Enter your postal code for delivery availability
                 </p>
               </div>
-
-              <div className="w-full mt-6 flex items-center justify-between text-3xl">
-                <div className="flex items-center">
-                  <p>Rating: </p>
-                  <p className="mr-4"> {product.rating}</p>
-                  <Rating className="mr-4" value={product.rating} />
-                  <p className="text-xl text-gray-700">
-                    from {product.numReviews} Reviews
-                  </p>
-                </div>
-              </div>
-
-              <h3 className="text-3xl tracking-tight mt-10 text-gray-900">
-                Description
-              </h3>
-              <div className="space-y-6">
-                <p className="text-xl text-gray-700 mt-5">
-                  {product.description}
+            </div>
+            <div className="flex items-center gap-2">
+              <RefreshCw className="w-6 h-6" />
+              <div>
+                <p className="font-semibold">Return Delivery</p>
+                <p className="text-sm text-gray-600">
+                  Free 30 Days Delivery Returns. Details
                 </p>
-              </div>
-
-              <h2 className="text-3xl tracking-tight mt-10 text-gray-900">
-                highlights
-              </h2>
-              <div className="mt-4 space-y-6">
-                {product.specifications && product.specifications.features ? (
-                  <div>
-                    <p>
-                      <strong>Features:</strong>{" "}
-                      {product.specifications.features}
-                    </p>
-                    <p>
-                      <strong>Compatibility:</strong>{" "}
-                      {product.specifications.compatibility}
-                    </p>
-                    <p>
-                      <strong>Installation:</strong>{" "}
-                      {product.specifications.installation}
-                    </p>
-                  </div>
-                ) : (
-                  <p>No specifications available</p> // Fallback if specifications are missing
-                )}
-              </div>
-
-              <div className="w-full">
-                <h3 className="sr-only">Reviews</h3>
-                <div className="flex items-center">
-                  {/* Price */}
-                  <div className="mt-6 lg:row-span-3  w-full lg:mt-0">
-                    <div className="handleCartCase">
-                      {product.stock <= 0 ? (
-                        <p className="mt-10 pt-10 text-2xl pl-10 text-red-700">
-                          OUT OF STOCK
-                        </p>
-                      ) : (
-                        <div>
-                          <button
-                            // onClick={handleCart}
-                            type="submit"
-                            className="mt-40 w-4xl flex items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 mb-10 "
-                          >
-                            Add to Cart
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 }
  
 export default ProductDetail;
