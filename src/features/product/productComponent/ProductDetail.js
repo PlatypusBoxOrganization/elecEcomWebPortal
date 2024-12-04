@@ -44,7 +44,7 @@ const ProductDetail = () => {
         <div className="space-y-4">
           <div className="bg-gray-100 rounded-lg p-8">
             <img
-              src={Wearable}
+              src={`${product.images[0].url}`}
               alt="Havic HV G-92 Gamepad"
               className="w-full object-contain"
             />
@@ -56,7 +56,7 @@ const ProductDetail = () => {
         <div className="space-y-6">
           <div>
             <h1 className="text-3xl font-bold">{product.name}</h1>
-           
+
             <div className="mt-2 Rating flex inline-flex justify-between">
               <p className="pr-4">{product.rating}</p>
               <Rating value={product.rating} />

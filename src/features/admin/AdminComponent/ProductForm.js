@@ -73,7 +73,8 @@ const ProductForm = () => {
           formData.append("rating", +data.rating);
           formData.append("stock", +data.stock);
           formData.append("discountPercentage", +data.discountPercentage);
-
+          formData.append("brand", data.brand);
+          formData.append("description",data.description) ; 
           // Handle exactly five images
           if (data.image1) formData.append("images", data.image1[0]);
           if (data.image2) formData.append("images", data.image2[0]);
@@ -123,8 +124,8 @@ const ProductForm = () => {
                   )}
                 </div>
               </div>
-            
-              {/* <div className="col-span-full">
+
+              <div className="col-span-full">
                 <label
                   htmlFor="description"
                   className="block text-sm font-medium leading-6 text-gray-900"
@@ -147,7 +148,7 @@ const ProductForm = () => {
                 {errors.description?.message && (
                   <p className="text-red-500">{errors.description?.message}</p>
                 )}
-              </div> */}
+              </div>
 
               {/* Five Image Inputs */}
               {Array.from({ length: 5 }).map((_, index) => (
@@ -203,6 +204,49 @@ const ProductForm = () => {
                 </select>
                 {errors.category?.message && (
                   <p className="text-red-500">{errors.category?.message}</p>
+                )}
+              </div>
+            </div>
+            <div className="sm:col-span-4">
+              <label
+                htmlFor="brand"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Brand
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  {...register("brand", {
+                    required: "Brand is required",
+                  })}
+                  id="brand"
+                  className="block flex-1 border-1 bg-transparent py-1.5 pl-1 text-gray-900 "
+                />
+                {errors.brand?.message && (
+                  <p className="text-red-500">{errors.brand?.message}</p>
+                )}
+              </div>
+            </div>
+            <div className="sm:col-span-2 sm:col-start-1">
+              <label
+                htmlFor="numReviews"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Number of Reviews
+              </label>
+              <div className="mt-2">
+                <input
+                  type="number"
+                  id="numReviews"
+                  {...register("numReviews", {
+                    required: "Number of reviews is required",
+                    min: 0,
+                  })}
+                  className="block rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {errors.numReviews?.message && (
+                  <p className="text-red-500">{errors.numReviews?.message}</p>
                 )}
               </div>
             </div>
