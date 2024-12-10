@@ -6,34 +6,26 @@ import { fetchProductByIdAsync, selectProductById } from "../productSlice";
 import { useParams } from "react-router-dom";
 import Rating from "../../../Utils/Rating";
 const ProductDetail = () => {
-    const [selectedSize, setSelectedSize] = useState("M");
-    const [quantity, setQuantity] = useState(1);
-    const [selectedColor, setSelectedColor] = useState("white");
+  const [selectedSize, setSelectedSize] = useState("M");
+  const [quantity, setQuantity] = useState(1);
+  const [selectedColor, setSelectedColor] = useState("white");
 
-    const productImages = [Wearable , Wearable , Wearable ,Wearable];
-    const product = useSelector(selectProductById)
-  const ProductGridView = ({ images }) => {
-  return (
-    <div className="grid grid-cols-4 gap-4">
-      {images.map((imageUrl, i) => (
-        <div key={i} className="bg-gray-100 rounded-lg p-2">
-          <img
-            src={imageUrl}
-            alt={`Product view ${i + 1}`}
-            className="w-full object-contain"
-          />
-        </div>
-      ))}
-    </div>
-  );
-};
+  const product = useSelector(selectProductById);
   const dispatch = useDispatch();
-
   const params = useParams();
- useEffect(() => {
-   // console.log("user of Product details" +user);
-   dispatch(fetchProductByIdAsync(params.id));
- }, [dispatch, params.id]);
+
+  useEffect(() => {
+    dispatch(fetchProductByIdAsync(params.id));
+  }, [dispatch, params.id]);
+
+  // Handle case when product or product images are not available
+  if (!product || !product.images || product.images.length === 0) {
+    return <div>Loading product...</div>; // Display loading state if data is not available
+  }
+
+  const mainImage = product?.images[0].url; // Make sure images exists
+  const otherImages = product?.images.slice(1); // Get other images
+
   return (
     <div className="max-w-7xl mx-auto p-8 font-montserrat">
       <h1 className="text-black text-2xl">
@@ -44,19 +36,27 @@ const ProductDetail = () => {
         <div className="space-y-4">
           <div className="bg-gray-100 rounded-lg p-8">
             <img
-              src={`${product.images[0].url}`}
-              alt="Havic HV G-92 Gamepad"
+              src={mainImage}
+              alt={product.name}
               className="w-full object-contain"
             />
           </div>
-          <ProductGridView images={productImages} />
+          <div className="thumbnails mt-4 flex space-x-4">
+            {otherImages.map((image, index) => (
+              <img
+                key={index}
+                src={image.url}
+                alt={`Thumbnail ${index + 1}`}
+                className="w-24 h-auto object-contain cursor-pointer"
+              />
+            ))}
+          </div>
         </div>
 
         {/* Product Details */}
         <div className="space-y-6">
           <div>
             <h1 className="text-3xl font-bold">{product.name}</h1>
-
             <div className="mt-2 Rating flex inline-flex justify-between">
               <p className="pr-4">{product.rating}</p>
               <Rating value={product.rating} />
@@ -66,12 +66,11 @@ const ProductDetail = () => {
             </div>
             <p className="text-2xl font-bold mt-4">{product.discountPrice}</p>
             <p className="mt-4 text-gray-600">
-              PlayStation 5 Controller Skin High-quality vinyl with air release
-              channels for easy bubble free install & mess free removal
+              {product.description || "Description not available."}
             </p>
           </div>
 
-          {/* Color Selection */}
+          {/* Color and Size Selection */}
           <div>
             <p className="font-semibold mb-2">Colours:</p>
             <div className="flex gap-2">
@@ -90,7 +89,6 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          {/* Size Selection */}
           <div>
             <p className="font-semibold mb-2">Size:</p>
             <div className="flex gap-2">
@@ -160,6 +158,5 @@ const ProductDetail = () => {
       </div>
     </div>
   );
-}
- 
+};
 export default ProductDetail;

@@ -9,6 +9,9 @@ import ProductDetail from "./features/product/productComponent/ProductDetail";
 import Footer from "./pages/Footer";
 import Verification from "./features/auth/authComponent/Verification";
 import ProductForm from "./features/admin/AdminComponent/ProductForm";
+import Sidebar from "./features/admin/AdminComponent/Sidebar";
+import Default from "./features/admin/AdminComponent/Default";
+import AdminPanelLayout from "./features/admin/AdminComponent/AdminPanelLayout";
 function App() {
   return (
     <div className="App">
@@ -17,11 +20,18 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/admin" element={<AdminPanelLayout />} />
             <Route path="/verify" element={<Verification />} />
             <Route path="/login" element={<Login />} />
-
+            <Route path="/sidebar" element={<Sidebar />} />
             <Route path="/productDetail/:id" element={<ProductDetail />} />
             <Route path="/productForm" element={<ProductForm />} />
+            
+            <Route path="/admin" element={<AdminPanelLayout />}>
+              <Route path="productForm" element={<ProductForm />} />
+              <Route path="default" element={<Default />} />
+              {/* Add more admin routes here */}
+            </Route>
           </Routes>
         </BrowserRouter>
         <Footer />

@@ -35,9 +35,10 @@ const ProductForm = () => {
       setValue("description", selectedProduct.description);
       setValue("highlights", selectedProduct.highlights);
       setValue("price", selectedProduct.price);
+      setValue("numReviews",selectedProduct.numReviews) ; 
       setValue("rating", selectedProduct.rating);
       setValue("category", selectedProduct.category);
-      setValue("stock", selectedProduct.stcok);
+      setValue("stock", selectedProduct.stock);
       setValue("discountPercentage", selectedProduct.discountPercentage);
     }
   }, [selectedProduct, setValue]);
@@ -72,9 +73,10 @@ const ProductForm = () => {
           formData.append("price", +data.price);
           formData.append("rating", +data.rating);
           formData.append("stock", +data.stock);
+          formData.append("numReviews", +data.numReviews);
           formData.append("discountPercentage", +data.discountPercentage);
           formData.append("brand", data.brand);
-          formData.append("description", data.description);
+        
           // Handle exactly five images
           if (data.image1) formData.append("images", data.image1[0]);
           if (data.image2) formData.append("images", data.image2[0]);
