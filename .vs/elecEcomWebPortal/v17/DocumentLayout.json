@@ -1,0 +1,343 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\pages\\NavBar.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\pages\\NavBar.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\pages\\HomePage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\pages\\HomePage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\pages\\Footer.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\pages\\Footer.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\DesktopFilter.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Utils\\DesktopFilter.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\CategorySection.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Utils\\CategorySection.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\BestSelling.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Utils\\BestSelling.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\Icon.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Utils\\Icon.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\SalesSection.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Utils\\SalesSection.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\Rating.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Utils\\Rating.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\Pagination.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Utils\\Pagination.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\OurProducts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Utils\\OurProducts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\NewArrivals.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Utils\\NewArrivals.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\MobileFilter.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Utils\\MobileFilter.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\FeatureComponent.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Utils\\FeatureComponent.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductSection.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\features\\product\\productComponent\\ProductSection.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductGrids.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\features\\product\\productComponent\\ProductGrids.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductDetail.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\features\\product\\productComponent\\ProductDetail.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductCard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\features\\product\\productComponent\\ProductCard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "package-lock.json",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\package-lock.json",
+              "RelativeDocumentMoniker": "package-lock.json",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\package-lock.json",
+              "RelativeToolTip": "package-lock.json",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-29T08:50:40.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SalesSection.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\SalesSection.js",
+              "RelativeDocumentMoniker": "src\\Utils\\SalesSection.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\SalesSection.js",
+              "RelativeToolTip": "src\\Utils\\SalesSection.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:34:59.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Rating.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\Rating.js",
+              "RelativeDocumentMoniker": "src\\Utils\\Rating.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\Rating.js",
+              "RelativeToolTip": "src\\Utils\\Rating.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:34:57.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Pagination.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\Pagination.js",
+              "RelativeDocumentMoniker": "src\\Utils\\Pagination.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\Pagination.js",
+              "RelativeToolTip": "src\\Utils\\Pagination.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:34:50.363Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "OurProducts.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\OurProducts.js",
+              "RelativeDocumentMoniker": "src\\Utils\\OurProducts.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\OurProducts.js",
+              "RelativeToolTip": "src\\Utils\\OurProducts.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:34:46.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Icon.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\Icon.js",
+              "RelativeDocumentMoniker": "src\\Utils\\Icon.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\Icon.js",
+              "RelativeToolTip": "src\\Utils\\Icon.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:34:23.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NavBar.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\pages\\NavBar.js",
+              "RelativeDocumentMoniker": "src\\pages\\NavBar.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\pages\\NavBar.js",
+              "RelativeToolTip": "src\\pages\\NavBar.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:31:26.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomePage.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\pages\\HomePage.js",
+              "RelativeDocumentMoniker": "src\\pages\\HomePage.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\pages\\HomePage.js",
+              "RelativeToolTip": "src\\pages\\HomePage.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:31:16.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Footer.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\pages\\Footer.js",
+              "RelativeDocumentMoniker": "src\\pages\\Footer.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\pages\\Footer.js",
+              "RelativeToolTip": "src\\pages\\Footer.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:31:50.31Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BestSelling.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\BestSelling.js",
+              "RelativeDocumentMoniker": "src\\Utils\\BestSelling.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\BestSelling.js",
+              "RelativeToolTip": "src\\Utils\\BestSelling.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:33:55.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CategorySection.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\CategorySection.js",
+              "RelativeDocumentMoniker": "src\\Utils\\CategorySection.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\CategorySection.js",
+              "RelativeToolTip": "src\\Utils\\CategorySection.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:33:57.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DesktopFilter.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\DesktopFilter.js",
+              "RelativeDocumentMoniker": "src\\Utils\\DesktopFilter.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\DesktopFilter.js",
+              "RelativeToolTip": "src\\Utils\\DesktopFilter.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:34:00.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "NewArrivals.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\NewArrivals.js",
+              "RelativeDocumentMoniker": "src\\Utils\\NewArrivals.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\NewArrivals.js",
+              "RelativeToolTip": "src\\Utils\\NewArrivals.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:34:44.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MobileFilter.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\MobileFilter.js",
+              "RelativeDocumentMoniker": "src\\Utils\\MobileFilter.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\MobileFilter.js",
+              "RelativeToolTip": "src\\Utils\\MobileFilter.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:34:39.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FeatureComponent.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\FeatureComponent.js",
+              "RelativeDocumentMoniker": "src\\Utils\\FeatureComponent.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\Utils\\FeatureComponent.js",
+              "RelativeToolTip": "src\\Utils\\FeatureComponent.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:34:21.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ProductSection.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductSection.js",
+              "RelativeDocumentMoniker": "src\\features\\product\\productComponent\\ProductSection.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductSection.js",
+              "RelativeToolTip": "src\\features\\product\\productComponent\\ProductSection.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:33:31.836Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ProductGrids.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductGrids.js",
+              "RelativeDocumentMoniker": "src\\features\\product\\productComponent\\ProductGrids.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductGrids.js",
+              "RelativeToolTip": "src\\features\\product\\productComponent\\ProductGrids.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:33:29.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ProductDetail.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductDetail.js",
+              "RelativeDocumentMoniker": "src\\features\\product\\productComponent\\ProductDetail.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductDetail.js",
+              "RelativeToolTip": "src\\features\\product\\productComponent\\ProductDetail.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:33:22.341Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ProductCard.js",
+              "DocumentMoniker": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductCard.js",
+              "RelativeDocumentMoniker": "src\\features\\product\\productComponent\\ProductCard.js",
+              "ToolTip": "E:\\DontDelete\\PlatypusBox\\Clients\\Vikrant\\elecEcomWebPortal\\src\\features\\product\\productComponent\\ProductCard.js",
+              "RelativeToolTip": "src\\features\\product\\productComponent\\ProductCard.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-29T08:33:17.213Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
