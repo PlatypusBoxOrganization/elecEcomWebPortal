@@ -7,7 +7,12 @@ import {
   Disclosure,
   DisclosurePanel,
 } from "@headlessui/react";
-import { XMarkIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { 
+  HiX as XMarkIcon,
+  HiMinus as MinusIcon,
+  HiPlus as PlusIcon 
+} from "react-icons/hi";
+
 export const MobileFilter = ({
   mobileFiltersOpen,
   setMobileFiltersOpen,

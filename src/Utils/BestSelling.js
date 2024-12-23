@@ -1,118 +1,129 @@
-import React from "react";
-import saleImg1 from "../Assets/saleImg1.jpg"
-import saleImg2 from "../Assets/saleImg2.jpg";
-import saleImg3 from "../Assets/saleImg3.webp";
-import saleImg4 from "../Assets/Wearable.jpg";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { FaStar } from 'react-icons/fa';
+
+// Import product images
+import ps5 from '../Assets/ps5.png';
+import phone from '../Assets/phone.jpg';
+import computing from '../Assets/Computing.webp';
+import audio from '../Assets/Audio.webp';
+
+const bestSellingProducts = [
+  {
+    id: 'ps5-console',
+    name: 'PlayStation 5 Console',
+    image: ps5,
+    price: 49999,
+    originalPrice: 54999,
+    discount: 9,
+    ratings: 495,
+    description: "Next-gen gaming console with ultra-high speed SSD",
+    category: "gaming"
+  },
+  {
+    id: 'iphone-15-pro',
+    name: 'iPhone 15 Pro',
+    image: phone,
+    price: 129999,
+    originalPrice: 139999,
+    discount: 7,
+    ratings: 485,
+    description: "Latest iPhone with A17 Pro chip",
+    category: "phones"
+  },
+  {
+    id: 'macbook-pro-m2',
+    name: 'MacBook Pro M2',
+    image: computing,
+    price: 199999,
+    originalPrice: 219999,
+    discount: 9,
+    ratings: 475,
+    description: "Powerful laptop with M2 chip",
+    category: "computers"
+  },
+  {
+    id: 'sony-wh1000xm5',
+    name: 'Sony WH-1000XM5',
+    image: audio,
+    price: 29999,
+    originalPrice: 34999,
+    discount: 14,
+    ratings: 465,
+    description: "Premium noise-cancelling headphones",
+    category: "audio"
+  }
+];
+
 const BestSelling = () => {
-  const products = [
-    {
-      id: 1,
-      discount: "-40%",
-      image: `${saleImg1}`, // Replace with real image URLs
-      name: "HAVIT HV-G92 Gamepad",
-      price: "$120",
-      originalPrice: "$160",
-      rating: 88,
-    },
-    {
-      id: 2,
-      discount: "-35%",
-      image: `${saleImg2}`,
-      name: "AK-900 Wired Keyboard",
-      price: "$960",
-      originalPrice: "$1160",
-      rating: 75,
-    },
-    {
-      id: 3,
-      discount: "-30%",
-      image: `${saleImg3}`,
-      name: "IPS LCD Gaming Monitor",
-      price: "$370",
-      originalPrice: "$400",
-      rating: 99,
-    },
-    {
-      id: 4,
-      discount: "-25%",
-      image: `${saleImg4}`,
-      name: "Apple Watch Series 8",
-      price: "$9975",
-      originalPrice: "$400",
-      rating: 99,
-    },
-  ];
+  return (
+    <section className="max-w-7xl mx-auto px-4 py-16 dark:bg-gray-900">
+      {/* Header */}
+      <div className="mb-8">
+        <span className="inline-block bg-red-500 text-white px-4 py-1 rounded-md mb-2">
+          This Month
+        </span>
+        <h2 className="text-2xl sm:text-3xl font-bold dark:text-white">Best Selling Products</h2>
+      </div>
 
-    return (
-      <section className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header Section */}
-        <div className="flex justify-between items-center mb-6">
-          <div>
-            <h3 className="text-red-500 font-bold text-4xl mb-6">This Month</h3>
-            <h2 className="text-2xl font-bold">Best Selling Product</h2>
-          </div>
-          {/* Countdown Timer */}
-          <div className="flex space-x-4 text-center">
-            {/* {["Days", "Hours", "Minutes", "Seconds"].map((unit, index) => (
-            <div key={index}>
-              <p className="text-5xl font-bold">30</p>
-              <span className="text-sm">{unit}</span>
-            </div>
-          ))} */}
-          </div>
-        </div>
-
-        {/* Products Section */}
-        <div className="relative">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="border rounded-lg p-4 relative group hover:shadow-lg"
-              >
-                {/* Discount Badge */}
-                <span className="absolute top-2 left-2 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded">
-                  {product.discount}
-                </span>
-                {/* Product Image */}
+      {/* Products Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {bestSellingProducts.map((product, index) => (
+          <motion.div
+            key={product.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden group hover:shadow-lg transition-shadow duration-300"
+          >
+            <Link to={`/productDetail/${product.id}`} className="block">
+              <div className="relative">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-40 object-cover"
+                  className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                {/* Product Details */}
-                <div className="mt-4">
-                  <h3 className="text-sm font-bold">{product.name}</h3>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-red-500 font-bold">
-                        {product.price}
-                      </span>
-                      <span className="text-gray-400 line-through ml-2">
-                        {product.originalPrice}
-                      </span>
-                    </div>
-                    <span className="text-yellow-500 text-sm">{`⭐(${product.rating})`}</span>
+                <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-md text-sm">
+                  -{product.discount}%
+                </div>
+              </div>
+
+              <div className="p-4">
+                <h3 className="text-lg font-semibold mb-2 dark:text-white line-clamp-1">
+                  {product.name}
+                </h3>
+                
+                <div className="flex items-center mb-2">
+                  <div className="flex items-center text-yellow-400">
+                    <FaStar />
+                    <span className="ml-1 text-sm text-gray-600 dark:text-gray-400">
+                      {(product.ratings / 100).toFixed(1)} ({product.ratings})
+                    </span>
                   </div>
                 </div>
-                {/* Add to Cart Button */}
-                <button className="mt-4 bg-black text-white text-sm w-full py-2 rounded hover:bg-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Add To Cart
-                </button>
-              </div>
-            ))}
-          </div>
 
-          {/* Navigation Arrows */}
-          <button className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200">
-            <i className="fas fa-chevron-left"></i>
-          </button>
-          <button className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200">
-            <i className="fas fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-    );
-}
- 
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
+                  {product.description}
+                </p>
+
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-xl font-bold text-gray-900 dark:text-white">
+                      ₹{product.price.toLocaleString()}
+                    </span>
+                    <span className="ml-2 text-sm text-gray-500 line-through">
+                      ₹{product.originalPrice.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
 export default BestSelling;

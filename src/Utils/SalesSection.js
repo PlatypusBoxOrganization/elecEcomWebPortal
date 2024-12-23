@@ -1,115 +1,79 @@
 import React from "react";
-import saleImg1 from "../Assets/saleImg1.jpg"
-import saleImg2 from "../Assets/saleImg2.jpg";
-import saleImg3 from "../Assets/saleImg3.webp";
-import saleImg4 from "../Assets/Wearable.jpg";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { FiGift, FiTag, FiClock } from "react-icons/fi";
+import gamingSetup from "../Assets/gaming setup.jpg";
+import gadgetsCollection from "../Assets/gadgetsection.webp";
+
 const SalesSection = () => {
-  const products = [
-    {
-      id: 1,
-      discount: "-40%",
-      image: `${saleImg1}`, // Replace with real image URLs
-      name: "HAVIT HV-G92 Gamepad",
-      price: "$120",
-      originalPrice: "$160",
-      rating: 88,
-    },
-    {
-      id: 2,
-      discount: "-35%",
-      image: `${saleImg2}`,
-      name: "AK-900 Wired Keyboard",
-      price: "$960",
-      originalPrice: "$1160",
-      rating: 75,
-    },
-    {
-      id: 3,
-      discount: "-30%",
-      image: `${saleImg3}`,
-      name: "IPS LCD Gaming Monitor",
-      price: "$370",
-      originalPrice: "$400",
-      rating: 99,
-    },
-    {
-      id: 4,
-      discount: "-25%",
-      image: `${saleImg4}`,
-      name: "Apple Watch Series 8",
-      price: "$9975",
-      originalPrice: "$400",
-      rating: 99,
-    },
-  ];
-
   return (
-    <section className="max-w-7xl mx-auto px-4 py-8">
-      {/* Header Section */}
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h3 className="text-red-500 font-bold text-4xl mb-6">Today's</h3>
-          <h2 className="text-2xl font-bold">Flash Sales</h2>
-        </div>
-        {/* Countdown Timer */}
-        <div className="flex space-x-4 text-center">
-          {/* {["Days", "Hours", "Minutes", "Seconds"].map((unit, index) => (
-            <div key={index}>
-              <p className="text-5xl font-bold">30</p>
-              <span className="text-sm">{unit}</span>
-            </div>
-          ))} */}
-        </div>
-      </div>
-
-      {/* Products Section */}
-      <div className="relative">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="border rounded-lg p-4 relative group hover:shadow-lg"
+    <section className="max-w-7xl mx-auto px-4 py-16 dark:bg-gray-900">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+        {/* Left Sale Item */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="relative h-[300px] sm:h-[400px] rounded-lg sm:rounded-2xl overflow-hidden group"
+        >
+          <img
+            src={gamingSetup}
+            alt="Gaming Setup"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent dark:from-black/80" />
+          <div className="absolute bottom-0 left-0 p-4 sm:p-6 lg:p-8 text-white">
+            <span className="inline-block bg-red-500 text-white px-3 sm:px-4 py-1 rounded-md mb-3 sm:mb-4 text-sm sm:text-base">
+              New Season
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">
+              Gaming Setup
+              <br />
+              Collection
+            </h3>
+            <p className="text-sm sm:text-base text-gray-200 dark:text-gray-300 mb-4 sm:mb-6">
+              Save up to 50% on selected gaming gear
+            </p>
+            <Link
+              to="/category/gaming"
+              className="inline-block bg-white text-black px-4 sm:px-6 py-1.5 sm:py-2 rounded-md text-sm sm:text-base font-semibold hover:bg-gray-100 transition-colors dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
             >
-              {/* Discount Badge */}
-              <span className="absolute top-2 left-2 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded">
-                {product.discount}
-              </span>
-              {/* Product Image */}
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-40 object-cover"
-              />
-              {/* Product Details */}
-              <div className="mt-4">
-                <h3 className="text-sm font-bold">{product.name}</h3>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-red-500 font-bold">
-                      {product.price}
-                    </span>
-                    <span className="text-gray-400 line-through ml-2">
-                      {product.originalPrice}
-                    </span>
-                  </div>
-                  <span className="text-yellow-500 text-sm">{`⭐(${product.rating})`}</span>
-                </div>
-              </div>
-              {/* Add to Cart Button */}
-              <button className="mt-4 bg-black text-white text-sm w-full py-2 rounded hover:bg-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Add To Cart
-              </button>
-            </div>
-          ))}
-        </div>
+              Shop Now
+            </Link>
+          </div>
+        </motion.div>
 
-        {/* Navigation Arrows */}
-        <button className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200">
-          <i className="fas fa-chevron-left"></i>
-        </button>
-        <button className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200">
-          <i className="fas fa-chevron-right"></i>
-        </button>
+        {/* Right Sale Item */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="relative h-[300px] sm:h-[400px] rounded-lg sm:rounded-2xl overflow-hidden group"
+        >
+          <img
+            src={gadgetsCollection}
+            alt="Gadgets Collection"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent dark:from-black/80" />
+          <div className="absolute bottom-0 left-0 p-4 sm:p-6 lg:p-8 text-white">
+            <span className="inline-block bg-green-500 text-white px-3 sm:px-4 py-1 rounded-md mb-3 sm:mb-4 text-sm sm:text-base">
+              Trending Now
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">
+              Latest Gadgets
+              <br />
+              Collection
+            </h3>
+            <p className="text-sm sm:text-base text-gray-200 dark:text-gray-300 mb-4 sm:mb-6">
+              Discover cutting-edge technology
+            </p>
+            <Link
+              to="/category/gadgets"
+              className="inline-block bg-white text-black px-4 sm:px-6 py-1.5 sm:py-2 rounded-md text-sm sm:text-base font-semibold hover:bg-gray-100 transition-colors dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
+            >
+              Shop Now
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

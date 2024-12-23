@@ -1,131 +1,116 @@
-import { ChevronRightIcon } from "@heroicons/react/solid";
-import qr from "../Assets/QrCode.png";
-import play from "../Assets/GooglePlay.png";
-import appstore from "../Assets/QrCode.png";
-import fb from "../Assets/Icon-Facebook.png";
-import l from "../Assets/Icon-Linkedin.png";
-import ig from "../Assets/icon-instagram.png";
-import tw from "../Assets/Icon-Twitter.png";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaArrowRight } from 'react-icons/fa';
+import { useTheme } from '../context/ThemeContext';
+import QrCode from '../Assets/QrCode.png';
+import GooglePlay from '../Assets/GooglePlay.png';
+import AppStore from '../Assets/AppStore.png';
+
 const Footer = () => {
-    return (
-      <footer className="bg-black text-white p-8 font-montserrat">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
-          {/* Exclusive Section */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-xl">Exclusive</h3>
-            <p>Subscribe</p>
+  const { darkMode } = useTheme();
+  const [email, setEmail] = useState('');
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    // Implement subscription logic
+    setEmail('');
+  };
+
+  return (
+    <footer className={`${darkMode ? 'bg-black text-white' : 'bg-black text-white'} py-16`}>
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        {/* Column 1 - Subscribe */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold mb-6">Exclusive</h2>
+          <div className="space-y-2">
+            <h3 className="font-semibold">Subscribe</h3>
             <p className="text-sm">Get 10% off your first order</p>
-            <div className="flex">
+            <form onSubmit={handleSubscribe} className="relative">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="bg-transparent border border-white/30 rounded-l px-3 py-2 text-sm w-full focus:outline-none"
+                className="w-full bg-transparent border border-white/20 rounded px-4 py-2 text-sm focus:outline-none focus:border-white"
               />
-              <button className="bg-white/10 border border-white/30 border-l-0 rounded-r px-2">
-                <ChevronRightIcon className="w-4 h-4" />
+              <button
+                type="submit"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2"
+              >
+                <FaArrowRight className="text-white" />
               </button>
-            </div>
-          </div>
-
-          {/* Support Section */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-xl">Support</h3>
-            <p className="text-sm">111 Bijoy sarani, Dhaka,</p>
-            <p className="text-sm">DH 1515, Bangladesh.</p>
-            <p className="text-sm">exclusive@gmail.com</p>
-            <p className="text-sm">+88015-88888-9999</p>
-          </div>
-
-          {/* Account Section */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-xl">Account</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <p className="hover:underline">My Account</p>
-              </li>
-              <li>
-                <p className="hover:underline">Login / Register</p>
-              </li>
-              <li>
-                <p className="hover:underline">Cart</p>
-              </li>
-              <li>
-                <p className="hover:underline">Wishlist</p>
-              </li>
-              <li>
-                <p className="hover:underline">Shop</p>
-              </li>
-            </ul>
-          </div>
-
-          {/* Quick Link Section */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-xl">Quick Link</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <p className="hover:underline">Privacy Policy</p>
-              </li>
-              <li>
-                <p className="hover:underline">Terms Of Use</p>
-              </li>
-              <li>
-                <p className="hover:underline">FAQ</p>
-              </li>
-              <li>
-                <p className="hover:underline">Contact</p>
-              </li>
-            </ul>
-          </div>
-
-          {/* Download App Section */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-xl">Download App</h3>
-            <p className="text-sm">Save $3 with App New User Only</p>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="bg-white p-1 rounded">
-                <img src={qr} alt="QR Code" className="w-full" />
-              </div>
-              <div className="flex flex-col justify-between">
-                <a href="/#" target="_blank" rel="noopener noreferrer">
-                  <img src={play} alt="Google Play" className="rounded" />
-                </a>
-                <a href="/#" target="_blank" rel="noopener noreferrer">
-                  <img src={appstore} alt="App Store" className="rounded" />
-                </a>
-              </div>
-            </div>
-            <div className="flex space-x-4 mt-4">
-              <a href="/#" target="_blank" rel="noopener noreferrer">
-                <span className="w-6 h-6 text-xl">
-                  <img src={fb} alt="Facebook" />
-                </span>
-              </a>
-              <a href="/#" target="_blank" rel="noopener noreferrer">
-                <span className="w-6 h-6 text-xl">
-                  <img src={tw} alt="Twitter" />
-                </span>
-              </a>
-              <a href="/#" target="_blank" rel="noopener noreferrer">
-                <span className="w-6 h-6 text-xl">
-                  <img src={ig} alt="Instagram" />
-                </span>
-              </a>
-              <a href="/#" target="_blank" rel="noopener noreferrer">
-                <span className="w-6 h-6 text-xl">
-                  <img src={l} alt="LinkedIn" />
-                </span>
-              </a>
-            </div>
+            </form>
           </div>
         </div>
 
-        {/* Copyright Section */}
-        <div className="mt-8 text-center text-sm text-gray-400">
-          <p>© Copyright Rimel 2022. All rights reserved</p>
+        {/* Column 2 - Support */}
+        <div className="space-y-4">
+          <h3 className="font-semibold text-lg mb-6">Support</h3>
+          <div className="space-y-2 text-sm">
+            <p>111 Bijoy sarani, Dhaka,</p>
+            <p>DH 1515, Bangladesh.</p>
+            <p>exclusive@gmail.com</p>
+            <p>+88015-88888-9999</p>
+          </div>
         </div>
-      </footer>
-    );
-}
- 
+
+        {/* Column 3 - Account */}
+        <div className="space-y-4">
+          <h3 className="font-semibold text-lg mb-6">Account</h3>
+          <ul className="space-y-2 text-sm">
+            <li><Link to="/profile" className="hover:text-gray-300">My Account</Link></li>
+            <li><Link to="/login" className="hover:text-gray-300">Login / Register</Link></li>
+            <li><Link to="/cart" className="hover:text-gray-300">Cart</Link></li>
+            <li><Link to="/wishlist" className="hover:text-gray-300">Wishlist</Link></li>
+            <li><Link to="/shop" className="hover:text-gray-300">Shop</Link></li>
+          </ul>
+        </div>
+
+        {/* Column 4 - Quick Link */}
+        <div className="space-y-4">
+          <h3 className="font-semibold text-lg mb-6">Quick Link</h3>
+          <ul className="space-y-2 text-sm">
+            <li><Link to="/privacy-policy" className="hover:text-gray-300">Privacy Policy</Link></li>
+            <li><Link to="/terms" className="hover:text-gray-300">Terms Of Use</Link></li>
+            <li><Link to="/faq" className="hover:text-gray-300">FAQ</Link></li>
+            <li><Link to="/contact" className="hover:text-gray-300">Contact</Link></li>
+          </ul>
+        </div>
+
+        {/* Column 5 - Download App */}
+        <div className="space-y-4">
+          <h3 className="font-semibold text-lg mb-6">Download App</h3>
+          <div className="space-y-4">
+            <p className="text-xs text-gray-400">Save $3 with App New User Only</p>
+            <div className="flex space-x-4">
+              <div className="w-24 h-24">
+                <img src={QrCode} alt="QR Code" className="w-full h-full object-contain" />
+              </div>
+              <div className="space-y-2">
+                <a href="#" className="block w-32">
+                  <img src={GooglePlay} alt="Get it on Google Play" className="w-full" />
+                </a>
+                <a href="#" className="block w-32">
+                  <img src={AppStore} alt="Download on the App Store" className="w-full" />
+                </a>
+              </div>
+            </div>
+            <div className="flex space-x-4 pt-4">
+              <a href="#" className="hover:text-gray-300"><FaFacebookF /></a>
+              <a href="#" className="hover:text-gray-300"><FaTwitter /></a>
+              <a href="#" className="hover:text-gray-300"><FaInstagram /></a>
+              <a href="#" className="hover:text-gray-300"><FaLinkedinIn /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Copyright */}
+      <div className="mt-16 text-center text-sm text-gray-400">
+        <p> 2022 ElecShop. All rights reserved.</p>
+      </div>
+    </footer>
+  );
+};
+
 export default Footer;

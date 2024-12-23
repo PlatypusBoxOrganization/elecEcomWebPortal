@@ -1,176 +1,218 @@
-import { Fragment } from "react";
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItems,
-  Transition,
-} from "@headlessui/react";
-import {
-  Bars3Icon,
-  ShoppingCartIcon,
- XMarkIcon
-} from "@heroicons/react/24/outline";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaShoppingCart, FaHeart, FaSearch, FaSun, FaMoon, FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
-
-import { Hearts, MagnifyingGlass } from "react-loader-spinner";
-// import { selectLoggedInUser } from "../features/auth/authSlice";
-// import { selectedItems } from "../../features/cart/cartSlice";
-// import { selectUserInfo } from "../features/user/userSlice";
-
-const navigation = [
-  
-  { name: "About ", link: "/about", user: true },
-  { name: "Contact", link: "/contact", user: true },
-  { name: "Signup", link: "/signup", user: true },
-  { name: "Login", link: "/login", user: true },
-  // { name: "Admin", link: "/admin", admin: true },
-  // { name: "Add Product", link: "/admin/product-form/", admin: true },
-  // { name: "Orders", link: "/admin/orders", admin: true },
-];
-
-const dropdownLinks = [
-  { name: "My Profile", link: "/profile" },
-  { name: "My Orders", link: "/userOrders" },
-  { name: "Logout", link: "/signout" },
-];
+import { selectCartItems } from "../features/cart/cartSlice";
+import { useTheme } from "../context/ThemeContext";
+import { selectLoggedInUser } from "../features/auth/authSlice";
 
 const NavBar = () => {
-  // const items = useSelector(selectedItems);
-  // const userInfo = useSelector(selectUserInfo);
+  const cartItems = useSelector(selectCartItems);
+  const { darkMode, toggleDarkMode } = useTheme();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const user = useSelector(selectLoggedInUser);
 
-  const classNames = (...classes) => classes.filter(Boolean).join(" ");
-  const navItemClasses = (current) =>
-    classNames(
-      current
-        ? "bg-gray-900 text-black"
-        : "text-gray-900  text-xl  hover:text-black",
-      "rounded-md px-3 py-2 text-sm font-medium"
-    );
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Implement search functionality
+  };
 
   return (
-    <>
-      {/* {userInfo && ( */}
-      <Disclosure as="nav" className="bg-white border-b-[1px]">
-        {({ open }) => (
-          <>
-            <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
-              <div className="flex h-16 items-center justify-between">
-                {/* Logo */}
-                <div className="flex items-center">
-                  <Link
-                    to="/"
-                    className="text-gray-900 text-2xl font-bold hover:text-black"
-                  >
-                    Exclusive
-                  </Link>
-                </div>
+    <div className="sticky top-0 z-50">
+      {/* Announcement Bar */}
+      <div className="bg-black text-white py-2 px-4">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-center text-sm">
+            Special Offer! Get 50% OFF on All Electronics and Free Express Delivery{" "}
+            <a href="#" className="underline font-semibold">
+              ShopNow
+            </a>
+          </p>
+        </div>
+      </div>
 
-                {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center space-x-6">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.link}
-                      className={navItemClasses(item.current)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
+      {/* Main Navigation */}
+      <nav className={`${
+        darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
+      } shadow-sm`}>
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link to="/" className="text-2xl font-bold">
+              Exclusive
+            </Link>
 
-                {/* Icons */}
-                <div className="hidden md:flex items-center space-x-4">
-                  <input
-                    type="text"
-                    placeholder="What are you looking for?"
-                    className="w-full pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                  {/* <MagnifyingGlassIcon className="h-6 w-6 text-gray-500" /> */}
-                  <Link to="/wishlist">
-                    {/* <HeartIcon className="h-6 w-6 text-gray-500 hover:text-black" /> */}
-                  </Link>
-                  <Link to="/cart">
-                    <ShoppingCartIcon className="h-6 w-6 text-gray-500 hover:text-black" />
-                  </Link>
-                  <Menu as="div" className="relative">
-                    <MenuButton>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="/images/def.png"
-                        alt="User"
-                      />
-                    </MenuButton>
-                    <Transition as={Fragment}>
-                      <MenuItems className="absolute right-0 z-10 mt-2 w-48 bg-white rounded-md shadow-lg">
-                        {dropdownLinks.map((link) => (
-                          <Menu.Item key={link.name}>
-                            {({ active }) => (
-                              <Link
-                                to={link.link}
-                                className={classNames(
-                                  active
-                                    ? "bg-purple-600 text-white"
-                                    : "text-gray-700",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                {link.name}
-                              </Link>
-                            )}
-                          </Menu.Item>
-                        ))}
-                      </MenuItems>
-                    </Transition>
-                  </Menu>
-                </div>
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+              </svg>
+            </button>
 
-                {/* Mobile Menu Button */}
-                <Disclosure.Button className="md:hidden rounded-md bg-gray-200 p-2 text-gray-800 hover:bg-gray-300">
-                  {open ? (
-                    <XMarkIcon className="h-6 w-6" />
-                  ) : (
-                    <Bars3Icon className="h-6 w-6" />
-                  )}
-                </Disclosure.Button>
-              </div>
+            {/* Navigation Links - Desktop */}
+            <div className="hidden md:flex items-center space-x-8">
+              <Link to="/" className="hover:text-red-500 transition-colors">
+                Home
+              </Link>
+              <Link to="/contact" className="hover:text-red-500 transition-colors">
+                Contact
+              </Link>
+              <Link to="/about" className="hover:text-red-500 transition-colors">
+                About
+              </Link>
+              {!user && (
+                <Link to="/signup" className="hover:text-red-500 transition-colors">
+                  Sign Up
+                </Link>
+              )}
             </div>
 
-            {/* Mobile Menu */}
-            <Disclosure.Panel className="md:hidden bg-gray-50">
-              <div className="space-y-2 px-4">
-                {navigation.map((item) => (
-                  <Disclosure.Button
-                    key={item.name}
-                    as={Link}
-                    to={item.link}
-                    className="block text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-center"
+            {/* Search and Icons - Desktop */}
+            <div className="hidden md:flex items-center space-x-6">
+              {/* Search Bar */}
+              <div className="relative">
+                <form onSubmit={handleSearch} className="relative">
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="What are you looking for?"
+                    className={`w-64 py-2 pl-4 pr-10 rounded-md ${
+                      darkMode 
+                        ? 'bg-gray-800 text-white placeholder-gray-400 border-gray-700' 
+                        : 'bg-gray-100 text-gray-900 placeholder-gray-500'
+                    } focus:outline-none`}
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
                   >
-                    {item.name}
-                  </Disclosure.Button>
-                ))}
+                    <FaSearch className="w-4 h-4 text-gray-400" />
+                  </button>
+                </form>
               </div>
-              <div className="border-t border-gray-200 mt-2 px-4">
-                {dropdownLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    to={link.link}
-                    className="block text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md text-center"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
-            </Disclosure.Panel>
-          </>
-        )}
-      </Disclosure>
 
-      {/* )} */}
-    </>
+              {/* Icons */}
+              <Link 
+                to={user ? "/profile" : "/login"} 
+                className="hover:text-red-500 transition-colors"
+                title={user ? "View Profile" : "Login"}
+              >
+                <FaUser className="w-6 h-6" />
+              </Link>
+
+              <Link to="/wishlist" className="hover:text-red-500 transition-colors">
+                <FaHeart className="w-6 h-6" />
+              </Link>
+
+              <Link to="/cart" className="relative hover:text-red-500 transition-colors">
+                <FaShoppingCart className="w-6 h-6" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+              </Link>
+
+              <button
+                onClick={toggleDarkMode}
+                className="hover:text-red-500 transition-colors"
+              >
+                {darkMode ? (
+                  <FaSun className="w-6 h-6" />
+                ) : (
+                  <FaMoon className="w-6 h-6" />
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden py-4 border-t">
+              <div className="flex flex-col space-y-4">
+                <Link to="/" className="hover:text-red-500 transition-colors">
+                  Home
+                </Link>
+                <Link to="/contact" className="hover:text-red-500 transition-colors">
+                  Contact
+                </Link>
+                <Link to="/about" className="hover:text-red-500 transition-colors">
+                  About
+                </Link>
+                {!user && (
+                  <Link to="/signup" className="hover:text-red-500 transition-colors">
+                    Sign Up
+                  </Link>
+                )}
+                
+                {/* Mobile Search */}
+                <form onSubmit={handleSearch} className="relative">
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="What are you looking for?"
+                    className={`w-full py-2 pl-4 pr-10 rounded-md ${
+                      darkMode 
+                        ? 'bg-gray-800 text-white placeholder-gray-400 border-gray-700' 
+                        : 'bg-gray-100 text-gray-900 placeholder-gray-500'
+                    } focus:outline-none`}
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                  >
+                    <FaSearch className="w-4 h-4 text-gray-400" />
+                  </button>
+                </form>
+
+                {/* Mobile Icons */}
+                <div className="flex items-center space-x-6 pt-4">
+                  <Link 
+                    to={user ? "/profile" : "/login"} 
+                    className="hover:text-red-500 transition-colors"
+                    title={user ? "View Profile" : "Login"}
+                  >
+                    <FaUser className="w-6 h-6" />
+                  </Link>
+                  
+                  <Link to="/wishlist" className="hover:text-red-500 transition-colors">
+                    <FaHeart className="w-6 h-6" />
+                  </Link>
+
+                  <Link to="/cart" className="relative hover:text-red-500 transition-colors">
+                    <FaShoppingCart className="w-6 h-6" />
+                    {totalItems > 0 && (
+                      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                        {totalItems}
+                      </span>
+                    )}
+                  </Link>
+
+                  <button
+                    onClick={toggleDarkMode}
+                    className="hover:text-red-500 transition-colors"
+                  >
+                    {darkMode ? (
+                      <FaSun className="w-6 h-6" />
+                    ) : (
+                      <FaMoon className="w-6 h-6" />
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+    </div>
   );
 };
 

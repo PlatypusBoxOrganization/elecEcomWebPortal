@@ -1,23 +1,19 @@
+import { 
+  MdPhoneAndroid,
+  MdCamera,
+  MdComputer,
+  MdAccessTime,
+  MdVolumeUp,
+  MdGamepad
+} from "react-icons/md";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
-import { DevicePhoneMobileIcon } from "@heroicons/react/24/outline";
-import { CameraIcon } from "@heroicons/react/24/outline";
-import { ComputerDesktopIcon } from "@heroicons/react/24/outline";
-import { ClockIcon } from "@heroicons/react/24/outline";
-import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
-import { CubeIcon } from "@heroicons/react/24/outline";
-
-export const mobile = DevicePhoneMobileIcon;
-export const camera = CameraIcon;
-export const desktop = ComputerDesktopIcon;
-export const clock = ClockIcon;
-export const headphone = SpeakerWaveIcon;
-export const gamepad = CubeIcon;
-export const facebook = (
-  <i class="fa-brands fa-facebook" style={{ color: "#ffffff" }}></i>
-);
-export const twitter = (
-  <i class="fa-brands fa-twitter" style={{ color: "#ffffff" }}></i>
-);
-export const instagram = (
-  <i class="fa-brands fa-instagram" style={{ color: "#ffffff" }}></i>
-);
+export const mobile = MdPhoneAndroid;
+export const camera = MdCamera;
+export const desktop = MdComputer;
+export const clock = MdAccessTime;
+export const headphone = MdVolumeUp;
+export const gamepad = MdGamepad;
+export const facebook = <FaFacebook style={{ color: "#ffffff" }} />;
+export const twitter = <FaTwitter style={{ color: "#ffffff" }} />;
+export const instagram = <FaInstagram style={{ color: "#ffffff" }} />;

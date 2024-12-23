@@ -1,39 +1,23 @@
-const Rating = ({ value }) => {
-  const fullStar = "fa-solid fa-star";
-  const halfStar = "fa-solid fa-star-half";
+import React from "react";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
+const Rating = ({ value, text }) => {
   return (
-    <div className="Rating">
-      <span>
-        <i
-          style={{ color: "#FFD43B" }}
-          className={value >= 1 ? fullStar : value >= 0.5 ? halfStar : null}
-        ></i>
-      </span>
-      <span>
-        <i
-          style={{ color: "#FFD43B" }}
-          className={value >= 2 ? fullStar : value >= 1.5 ? halfStar : null}
-        ></i>
-      </span>
-      <span>
-        <i
-          style={{ color: "#FFD43B" }}
-          className={value >= 3 ? fullStar : value >= 2.5 ? halfStar : null}
-        ></i>
-      </span>
-      <span>
-        <i
-          style={{ color: "#FFD43B" }}
-          className={value >= 4 ? fullStar : value >= 3.5 ? halfStar : null}
-        ></i>
-      </span>
-      <span>
-        <i
-          style={{ color: "#FFD43B" }}
-          className={value >= 5 ? fullStar : value >= 4.5 ? halfStar : null}
-        ></i>
-      </span>
+    <div className="flex items-center">
+      <div className="flex items-center mr-2">
+        {[1, 2, 3, 4, 5].map((rating) => (
+          <span key={rating}>
+            {value >= rating ? (
+              <FaStar className="text-yellow-400 w-4 h-4" />
+            ) : value >= rating - 0.5 ? (
+              <FaStarHalfAlt className="text-yellow-400 w-4 h-4" />
+            ) : (
+              <FaRegStar className="text-gray-300 dark:text-gray-600 w-4 h-4" />
+            )}
+          </span>
+        ))}
+      </div>
+      {text && <span className="text-sm text-gray-600 dark:text-gray-400">{text}</span>}
     </div>
   );
 };

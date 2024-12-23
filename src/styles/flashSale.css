@@ -1,0 +1,31 @@
+.flash-sale-swiper {
+    padding: 20px 10px 40px !important;
+  }
+  
+  .flash-sale-swiper .swiper-button-next,
+  .flash-sale-swiper .swiper-button-prev {
+    color: #ef4444;
+    background: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .flash-sale-swiper .swiper-button-next:after,
+  .flash-sale-swiper .swiper-button-prev:after {
+    font-size: 20px;
+  }
+  
+  .flash-sale-swiper .swiper-button-disabled {
+    opacity: 0.5;
+  }
+  
+  .flash-sale-swiper .swiper-pagination-bullet {
+    background: #ef4444;
+  }
+  
+  .flash-sale-swiper .swiper-pagination-bullet-active {
+    background: #ef4444;
+  }
+  
