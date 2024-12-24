@@ -1,0 +1,6 @@
+Open CMD
+1. cd "C:\Users\yuvik\PlatypusBox E-com\elecEcomWebPortal"
+2. UploadDev\gcpUpdate6.bat
+3. UploadDev\gcpUpdate7.bat
+4. UploadDev\gcpUpdate8.bat
+5. UploadDev\gcpUpdate9.bat
