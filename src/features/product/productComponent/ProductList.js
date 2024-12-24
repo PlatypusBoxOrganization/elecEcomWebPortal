@@ -60,25 +60,25 @@ const ProductList = ({ title, subtitle, products, showTimer = false }) => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 dark:bg-gray-900">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
-          <p className="text-gray-600 mt-1">{subtitle}</p>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{title}</h2>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">{subtitle}</p>
         </div>
         {showTimer && (
           <div className="flex items-center space-x-2">
-            <span className="text-gray-600">Ends in:</span>
+            <span className="text-gray-600 dark:text-gray-400">Ends in:</span>
             <div className="flex items-center space-x-1">
-              <div className="bg-gray-900 text-white px-2 py-1 rounded">
+              <div className="bg-gray-900 dark:bg-gray-700 text-white px-2 py-1 rounded">
                 {String(timeLeft.hours).padStart(2, '0')}
               </div>
-              <span className="text-gray-900">:</span>
-              <div className="bg-gray-900 text-white px-2 py-1 rounded">
+              <span className="text-gray-900 dark:text-white">:</span>
+              <div className="bg-gray-900 dark:bg-gray-700 text-white px-2 py-1 rounded">
                 {String(timeLeft.minutes).padStart(2, '0')}
               </div>
-              <span className="text-gray-900">:</span>
-              <div className="bg-gray-900 text-white px-2 py-1 rounded">
+              <span className="text-gray-900 dark:text-white">:</span>
+              <div className="bg-gray-900 dark:bg-gray-700 text-white px-2 py-1 rounded">
                 {String(timeLeft.seconds).padStart(2, '0')}
               </div>
             </div>
@@ -96,10 +96,10 @@ const ProductList = ({ title, subtitle, products, showTimer = false }) => {
           <motion.div
             key={product._id}
             variants={item}
-            className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300"
           >
             <div
-              className="relative cursor-pointer aspect-w-1 aspect-h-1 bg-gray-200"
+              className="relative cursor-pointer aspect-w-1 aspect-h-1 bg-gray-200 dark:bg-gray-700"
               onClick={() => handleProductClick(product._id)}
             >
               <img
@@ -115,15 +115,15 @@ const ProductList = ({ title, subtitle, products, showTimer = false }) => {
             </div>
 
             <div className="p-4">
-              <div className="text-sm text-gray-500 mb-1">{product.category}</div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
+              <div className="text-sm text-gray-500 dark:text-gray-400 mb-1">{product.category}</div>
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
                 {product.name}
               </h3>
               
               <div className="flex items-center mb-2">
                 <div className="flex items-center text-yellow-400">
                   <FaStar />
-                  <span className="ml-1 text-gray-600">
+                  <span className="ml-1 text-gray-600 dark:text-gray-300">
                     ({product.numReviews})
                   </span>
                 </div>
@@ -131,11 +131,11 @@ const ProductList = ({ title, subtitle, products, showTimer = false }) => {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-lg font-bold text-gray-900">
+                  <span className="text-lg font-bold text-gray-900 dark:text-white">
                     ₹{product.discountPrice}
                   </span>
                   {product.discountPercentage > 0 && (
-                    <span className="ml-2 text-sm text-gray-500 line-through">
+                    <span className="ml-2 text-sm text-gray-500 dark:text-gray-400 line-through">
                       ₹{product.price}
                     </span>
                   )}
@@ -144,7 +144,7 @@ const ProductList = ({ title, subtitle, products, showTimer = false }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleAddToCart(product)}
-                  className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                  className="flex items-center justify-center px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
                 >
                   <FaShoppingCart className="mr-2" />
                   Add

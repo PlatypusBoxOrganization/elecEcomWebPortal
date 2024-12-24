@@ -28,13 +28,13 @@ const ProductCard = ({ product }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       whileHover={{ y: -5 }}
-      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col h-full"
+      className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col h-full"
     >
       <div className="relative aspect-w-1 aspect-h-1 overflow-hidden">
         <img
           src={product.images?.[0]?.url || product.image || 'https://via.placeholder.com/300'}
           alt={product.name}
-          className="w-full h-64 object-contain p-4 bg-gray-50"
+          className="w-full h-64 object-contain p-4 bg-gray-50 dark:bg-gray-700"
         />
         <AnimatePresence>
           {product.discountPercentage > 0 && (
@@ -51,15 +51,15 @@ const ProductCard = ({ product }) => {
       </div>
 
       <div className="p-4 flex flex-col flex-grow">
-        <div className="text-sm text-gray-500 mb-1 capitalize">{product.category}</div>
-        <h3 className="text-lg font-medium text-gray-900 mb-2 line-clamp-2">
+        <div className="text-sm text-gray-500 dark:text-gray-400 mb-1 capitalize">{product.category}</div>
+        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2 line-clamp-2">
           {product.name}
         </h3>
         
         <div className="flex items-center mb-2">
           <div className="flex items-center text-yellow-400">
             <FaStar />
-            <span className="ml-1 text-gray-600">
+            <span className="ml-1 text-gray-600 dark:text-gray-300">
               ({product.numReviews || 0})
             </span>
           </div>
@@ -68,11 +68,11 @@ const ProductCard = ({ product }) => {
         <div className="mt-auto">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <span className="text-lg font-bold text-gray-900">
+              <span className="text-lg font-bold text-gray-900 dark:text-white">
                 ₹{product.discountPrice || product.price}
               </span>
               {product.discountPercentage > 0 && (
-                <span className="ml-2 text-sm text-gray-500 line-through">
+                <span className="ml-2 text-sm text-gray-500 dark:text-gray-400 line-through">
                   ₹{product.price}
                 </span>
               )}
@@ -84,7 +84,7 @@ const ProductCard = ({ product }) => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleAddToCart}
-              className="flex-1 flex items-center justify-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm"
+              className="flex-1 flex items-center justify-center px-3 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors text-sm"
             >
               <FaShoppingCart className="mr-2" />
               Add to Cart
@@ -94,7 +94,7 @@ const ProductCard = ({ product }) => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleProductClick}
-              className="flex-1 flex items-center justify-center px-3 py-2 bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors text-sm"
+              className="flex-1 flex items-center justify-center px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-sm"
             >
               <FaEye className="mr-2" />
               View Details

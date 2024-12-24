@@ -285,9 +285,9 @@ const CategoryPage = () => {
   };
 
   return (
-    <div>
+    <div className="dark:bg-gray-900">
       <NavBar />
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="max-w-7xl mx-auto px-4 py-16 dark:bg-gray-900">
         {/* Category Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -311,9 +311,9 @@ const CategoryPage = () => {
               animate={{ opacity: 1, y: 0 }}
               whileHover={{ y: -5 }}
               onClick={() => handleProductClick(product.id)}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden cursor-pointer"
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="relative aspect-square">
+              <div className="relative aspect-square dark:bg-gray-700">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -339,7 +339,7 @@ const CategoryPage = () => {
                       className={`w-4 h-4 ${
                         i < Math.floor(product.rating)
                           ? "text-yellow-400"
-                          : "text-gray-300"
+                          : "text-gray-300 dark:text-gray-600"
                       }`}
                     />
                   ))}
@@ -348,7 +348,7 @@ const CategoryPage = () => {
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-red-500">
+                  <span className="text-2xl font-bold text-red-500 dark:text-red-400">
                     ${product.price}
                   </span>
                   <motion.button
@@ -358,8 +358,8 @@ const CategoryPage = () => {
                     disabled={!product.stock}
                     className={`flex items-center space-x-2 px-6 py-2 rounded-lg font-semibold
                       ${product.stock > 0 
-                        ? 'bg-red-500 text-white hover:bg-red-600' 
-                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
+                        ? 'bg-red-500 dark:bg-red-600 text-white hover:bg-red-600 dark:hover:bg-red-700' 
+                        : 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'}`}
                   >
                     <FaShoppingCart />
                     <span>{product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}</span>

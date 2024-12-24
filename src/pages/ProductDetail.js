@@ -423,11 +423,11 @@ const ProductDetail = () => {
   };
 
   return (
-    <div>
+    <div className="dark:bg-gray-900">
       <NavBar />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 dark:bg-gray-900">
         {/* Breadcrumb */}
-        <div className="flex items-center text-sm text-gray-500 mb-8">
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-8">
           <span>Home</span>
           <span className="mx-2">/</span>
           <span>{product.category}</span>
@@ -451,7 +451,7 @@ const ProductDetail = () => {
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`aspect-square rounded-lg overflow-hidden border-2
+                  className={`aspect-square rounded-lg overflow-hidden border-2 bg-gray-100 dark:bg-gray-800
                     ${selectedImage === index ? 'border-red-500' : 'border-transparent'}`}
                 >
                   <img
@@ -477,7 +477,7 @@ const ProductDetail = () => {
                     className={`w-4 h-4 ${
                       i < Math.floor(product.rating)
                         ? 'text-yellow-400'
-                        : 'text-gray-300'
+                        : 'text-gray-300 dark:text-gray-600'
                     }`}
                   />
                 ))}
@@ -488,7 +488,7 @@ const ProductDetail = () => {
             </div>
 
             {/* Price */}
-            <div className="text-3xl font-bold text-red-500">
+            <div className="text-3xl font-bold text-red-500 dark:text-red-400">
               ${product.price.toFixed(2)}
             </div>
 
@@ -514,7 +514,7 @@ const ProductDetail = () => {
                     key={color}
                     onClick={() => setSelectedColor(index)}
                     className={`w-8 h-8 rounded-full border-2
-                      ${selectedColor === index ? 'border-red-500' : 'border-gray-300'}`}
+                      ${selectedColor === index ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}`}
                     style={{ backgroundColor: color.toLowerCase() }}
                   />
                 ))}
@@ -523,25 +523,25 @@ const ProductDetail = () => {
 
             {/* Stock Status */}
             <div className="text-sm font-semibold">
-              <span className={product.stock > 0 ? 'text-green-500' : 'text-red-500'}>
+              <span className={product.stock > 0 ? 'text-green-500 dark:text-green-400' : 'text-red-500 dark:text-red-400'}>
                 {product.stock > 0 ? `In Stock (${product.stock} available)` : 'Out of Stock'}
               </span>
             </div>
 
             {/* Quantity and Add to Cart */}
             <div className="flex items-center space-x-4">
-              <div className="flex items-center border rounded-lg">
+              <div className="flex items-center border dark:border-gray-600 rounded-lg">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="px-4 py-2 text-gray-600 hover:text-red-500"
+                  className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400"
                   disabled={!product.stock}
                 >
                   -
                 </button>
-                <span className="px-4 py-2 border-x">{quantity}</span>
+                <span className="px-4 py-2 border-x dark:border-gray-600 dark:text-gray-300">{quantity}</span>
                 <button
                   onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
-                  className="px-4 py-2 text-gray-600 hover:text-red-500"
+                  className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400"
                   disabled={!product.stock}
                 >
                   +
@@ -555,8 +555,8 @@ const ProductDetail = () => {
                 className={`flex-1 py-3 px-6 rounded-lg
                   flex items-center justify-center space-x-2
                   ${product.stock > 0 
-                    ? 'bg-red-500 hover:bg-red-600 text-white' 
-                    : 'bg-gray-300 cursor-not-allowed text-gray-500'}`}
+                    ? 'bg-red-500 dark:bg-red-600 hover:bg-red-600 dark:hover:bg-red-700 text-white' 
+                    : 'bg-gray-300 dark:bg-gray-600 cursor-not-allowed text-gray-500 dark:text-gray-400'}`}
               >
                 <FaShoppingCart />
                 <span>Buy Now</span>
@@ -564,22 +564,22 @@ const ProductDetail = () => {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="p-3 border rounded-lg hover:border-red-500
-                  hover:text-red-500 transition-colors"
+                className="p-3 border dark:border-gray-600 rounded-lg hover:border-red-500 dark:hover:border-red-400
+                  hover:text-red-500 dark:hover:text-red-400 transition-colors text-gray-600 dark:text-gray-300"
               >
                 <FaHeart />
               </motion.button>
             </div>
 
             {/* Free Delivery Section */}
-            <div className="space-y-4 pt-6 border-t">
+            <div className="space-y-4 pt-6 border-t dark:border-gray-700">
               <div className="flex items-center space-x-3">
                 <span className="font-semibold dark:text-white">Free Delivery</span>
-                <span className="text-sm text-gray-600">Enter your postal code for delivery availability</span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">Enter your postal code for delivery availability</span>
               </div>
               <div className="flex items-center space-x-3">
                 <span className="font-semibold dark:text-white">Return Delivery</span>
-                <span className="text-sm text-gray-600">Free 30 Days Delivery Returns. Details</span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">Free 30 Days Delivery Returns. Details</span>
               </div>
             </div>
           </div>
@@ -589,78 +589,40 @@ const ProductDetail = () => {
         <div className="mt-16">
           <h2 className="text-2xl font-bold mb-8 dark:text-white">Related Products</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {product.relatedProducts.map((item) => (
+            {product.relatedProducts.map((relatedProduct) => (
               <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                onClick={() => handleRelatedProductClick(item.id)}
-                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden cursor-pointer"
+                key={relatedProduct.id}
+                whileHover={{ y: -5 }}
+                onClick={() => handleRelatedProductClick(relatedProduct.id)}
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden cursor-pointer"
               >
-                <div className="aspect-square">
+                <div className="aspect-square bg-gray-100 dark:bg-gray-700">
                   <img
-                    src={item.image}
-                    alt={item.name}
+                    src={relatedProduct.image}
+                    alt={relatedProduct.name}
                     className="w-full h-full object-contain p-4"
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold mb-2 dark:text-white">{item.name}</h3>
+                  <h3 className="text-lg font-semibold mb-2 dark:text-white">{relatedProduct.name}</h3>
                   <div className="flex items-center mb-2">
                     {[...Array(5)].map((_, i) => (
                       <FaStar
                         key={i}
-                        className={`w-3 h-3 ${
-                          i < Math.floor(item.rating)
+                        className={`w-4 h-4 ${
+                          i < Math.floor(relatedProduct.rating)
                             ? 'text-yellow-400'
-                            : 'text-gray-300'
+                            : 'text-gray-300 dark:text-gray-600'
                         }`}
                       />
                     ))}
-                    <span className="ml-2 text-xs text-gray-600">({item.reviews})</span>
+                    <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                      ({relatedProduct.reviews})
+                    </span>
                   </div>
-                  <div className="text-red-500 font-bold">${item.price.toFixed(2)}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Best Selling Products */}
-        <div className="mt-16">
-          <h2 className="text-2xl font-bold mb-8 dark:text-white">Best Selling Products</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {Object.values(allProducts).filter((product) => product.id !== id).slice(0, 4).map((product) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                onClick={() => handleRelatedProductClick(product.id)}
-                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden cursor-pointer"
-              >
-                <div className="aspect-square">
-                  <img
-                    src={product.images[0]}
-                    alt={product.name}
-                    className="w-full h-full object-contain p-4"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold mb-2 dark:text-white">{product.name}</h3>
-                  <div className="flex items-center mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <FaStar
-                        key={i}
-                        className={`w-3 h-3 ${
-                          i < Math.floor(product.rating)
-                            ? 'text-yellow-400'
-                            : 'text-gray-300'
-                        }`}
-                      />
-                    ))}
-                    <span className="ml-2 text-xs text-gray-600">({product.reviews})</span>
-                  </div>
-                  <div className="text-red-500 font-bold">${product.price.toFixed(2)}</div>
+                  <span className="text-lg font-bold text-red-500 dark:text-red-400">
+                    ${relatedProduct.price}
+                  </span>
                 </div>
               </motion.div>
             ))}

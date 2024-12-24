@@ -27,14 +27,14 @@ const ProductDetail = () => {
   const otherImages = product?.images.slice(1); // Get other images
 
   return (
-    <div className="max-w-7xl mx-auto p-8 font-montserrat">
-      <h1 className="text-black text-2xl">
-        <span className="text-gray-300">{product.category}</span>/{product.name}
+    <div className="max-w-7xl mx-auto p-8 font-montserrat dark:bg-gray-900">
+      <h1 className="text-black dark:text-white text-2xl">
+        <span className="text-gray-300 dark:text-gray-500">{product.category}</span>/{product.name}
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Product Images */}
         <div className="space-y-4">
-          <div className="bg-gray-100 rounded-lg p-8">
+          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-8">
             <img
               src={mainImage}
               alt={product.name}
@@ -56,23 +56,23 @@ const ProductDetail = () => {
         {/* Product Details */}
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-bold">{product.name}</h1>
+            <h1 className="text-3xl font-bold dark:text-white">{product.name}</h1>
             <div className="mt-2 Rating flex inline-flex justify-between">
-              <p className="pr-4">{product.rating}</p>
+              <p className="pr-4 dark:text-gray-300">{product.rating}</p>
               <Rating value={product.rating} />
-              <p className="mt-0 pl-3 text-sm text-gray-700">
+              <p className="mt-0 pl-3 text-sm text-gray-700 dark:text-gray-400">
                 from {product.numReviews} Reviews
               </p>
             </div>
-            <p className="text-2xl font-bold mt-4">{product.discountPrice}</p>
-            <p className="mt-4 text-gray-600">
+            <p className="text-2xl font-bold mt-4 dark:text-white">{product.discountPrice}</p>
+            <p className="mt-4 text-gray-600 dark:text-gray-400">
               {product.description || "Description not available."}
             </p>
           </div>
 
           {/* Color and Size Selection */}
           <div>
-            <p className="font-semibold mb-2">Colours:</p>
+            <p className="font-semibold mb-2 dark:text-white">Colours:</p>
             <div className="flex gap-2">
               {["white", "black"].map((color) => (
                 <button
@@ -81,7 +81,7 @@ const ProductDetail = () => {
                   className={`w-6 h-6 rounded-full border-2 ${
                     selectedColor === color
                       ? "border-blue-500"
-                      : "border-gray-300"
+                      : "border-gray-300 dark:border-gray-600"
                   }`}
                   style={{ backgroundColor: color }}
                 />
@@ -90,7 +90,7 @@ const ProductDetail = () => {
           </div>
 
           <div>
-            <p className="font-semibold mb-2">Size:</p>
+            <p className="font-semibold mb-2 dark:text-white">Size:</p>
             <div className="flex gap-2">
               {["XS", "S", "M", "L", "XL"].map((size) => (
                 <button
@@ -99,7 +99,7 @@ const ProductDetail = () => {
                   className={`px-4 py-2 border rounded ${
                     selectedSize === size
                       ? "bg-red-500 text-white"
-                      : "border-gray-300"
+                      : "border-gray-300 dark:border-gray-600 dark:text-gray-300"
                   }`}
                 >
                   {size}
@@ -110,45 +110,45 @@ const ProductDetail = () => {
 
           {/* Quantity and Add to Cart */}
           <div className="flex gap-4">
-            <div className="flex items-center border rounded">
+            <div className="flex items-center border rounded dark:border-gray-600">
               <button
                 onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-                className="px-4 py-2 border-r"
+                className="px-4 py-2 border-r dark:border-gray-600 dark:text-white"
               >
                 -
               </button>
-              <span className="px-4 py-2">{quantity}</span>
+              <span className="px-4 py-2 dark:text-white">{quantity}</span>
               <button
                 onClick={() => setQuantity(quantity + 1)}
-                className="px-4 py-2 border-l"
+                className="px-4 py-2 border-l dark:border-gray-600 dark:text-white"
               >
                 +
               </button>
             </div>
-            <button className="flex-1 bg-red-500 text-white py-2 px-4 rounded">
+            <button className="flex-1 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700">
               Buy Now
             </button>
-            <button className="p-2 border rounded">
+            <button className="p-2 border rounded dark:border-gray-600 dark:text-gray-300">
               <Heart className="w-6 h-6" />
             </button>
           </div>
 
           {/* Delivery Info */}
-          <div className="space-y-4 border-t pt-4">
+          <div className="space-y-4 border-t dark:border-gray-700 pt-4">
             <div className="flex items-center gap-2">
-              <TruckIcon className="w-6 h-6" />
+              <TruckIcon className="w-6 h-6 dark:text-gray-300" />
               <div>
-                <p className="font-semibold">Free Delivery</p>
-                <p className="text-sm text-gray-600">
+                <p className="font-semibold dark:text-white">Free Delivery</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   Enter your postal code for delivery availability
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <RefreshCw className="w-6 h-6" />
+              <RefreshCw className="w-6 h-6 dark:text-gray-300" />
               <div>
-                <p className="font-semibold">Return Delivery</p>
-                <p className="text-sm text-gray-600">
+                <p className="font-semibold dark:text-white">Return Delivery</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   Free 30 Days Delivery Returns. Details
                 </p>
               </div>
