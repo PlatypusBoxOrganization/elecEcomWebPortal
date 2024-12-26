@@ -10,11 +10,45 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleAddToCart = (e) => {
+  const handleAddToCart = async (e) => {
     e.stopPropagation();
-    dispatch(addToCart({ ...product, quantity: 1 }));
-    toast.success('Added to cart successfully!');
+
+      // Example userId
+
+
+    try {
+      // API request to add product to the cart in the backend
+      const response = await fetch('http://localhost:4000/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          
+            productId: "676529090ea1df52b91606f8",
+            userId: "676bf67e6f553c1b7aa1e137",
+            quantity: 1
+          
+          
+        }),
+      });
+      
+
+      if (response.ok && result.success) {
+        // Dispatch the action to update the Redux store with the cart item
+        dispatch(addToCart({ ...product, quantity: 1 }));
+        toast.success('Product added to cart successfully!');
+      } else {
+        toast.error('Failed to add product to cart');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Error adding product to cart');
+    }
   };
+
+ 
+
 
   const handleProductClick = (e) => {
     e.stopPropagation();
