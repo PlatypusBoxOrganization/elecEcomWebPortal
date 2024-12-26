@@ -97,24 +97,52 @@ const Signup = () => {
     },
   ];
 
+  // const onSubmit = async (data) => {
+  //   try {
+  //     const response = await dispatch(
+  //       createUserAsync({
+  //         email: data.email,
+  //         password: data.password,
+  //         addresses: [],
+  //         role: "user",
+  //         name: data.name,
+  //       })
+  //     ).unwrap();
+
+  //     if (response?.error) {
+  //       setErrorMessage("You are already registered. Please login.");
+  //       setSuccessMessage("");
+  //     } else {
+  //       setSuccessMessage("Signup successful! Please verify your account.");
+  //       setErrorMessage("");
+  //     }
+  //   } catch (error) {
+  //     console.error("Signup error:", error);
+  //     setErrorMessage("An error occurred during signup. Please try again.");
+  //     setSuccessMessage("");
+  //   }
+  // };
+
   const onSubmit = async (data) => {
     try {
-      const response = await dispatch(
-        createUserAsync({
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
           email: data.email,
           password: data.password,
-          addresses: [],
-          role: "user",
-          name: data.name,
-        })
-      ).unwrap();
+        }),
+      });
 
-      if (response?.error) {
-        setErrorMessage("You are already registered. Please login.");
-        setSuccessMessage("");
-      } else {
+      const result = await response.json();
+
+      if (response.ok) {
         setSuccessMessage("Signup successful! Please verify your account.");
         setErrorMessage("");
+      } else {
+        setErrorMessage(result.message || "Signup failed.");
+        setSuccessMessage("");
       }
     } catch (error) {
       console.error("Signup error:", error);
