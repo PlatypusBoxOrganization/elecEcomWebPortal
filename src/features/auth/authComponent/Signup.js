@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { createUserAsync, selectError } from '../authSlice';
 import { motion } from 'framer-motion';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import SUI from '../../../Assets/side-image.png';
@@ -14,11 +12,11 @@ const Signup = () => {
     formState: { errors },
     watch,
   } = useForm();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const password = watch('password', '');
 
@@ -27,12 +25,31 @@ const Signup = () => {
       return;
     }
     try {
-      // Remove confirmPassword before sending to API
-      const { confirmPassword, ...signupData } = data;
-      // For now, just navigate to verify page since backend is not ready
-      navigate('/verify', { state: { email: data.email } });
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          role: 'USER'
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSuccessMessage("Signup successful! Please verify your account.");
+        setErrorMessage("");
+        navigate('/verify', { state: { email: data.email } });
+      } else {
+        setErrorMessage(result.message || "Signup failed.");
+        setSuccessMessage("");
+      }
     } catch (err) {
       console.error('Failed to signup:', err);
+      setErrorMessage("An error occurred during signup. Please try again.");
+      setSuccessMessage("");
     }
   };
 
@@ -55,13 +72,22 @@ const Signup = () => {
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-6">
-            {error && (
+            {successMessage && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="rounded-md bg-green-50 p-4"
+              >
+                <p className="text-sm text-green-600">{successMessage}</p>
+              </motion.div>
+            )}
+            {errorMessage && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className="rounded-md bg-red-50 p-4"
               >
-                <p className="text-sm text-red-600">{error}</p>
+                <p className="text-sm text-red-600">{errorMessage}</p>
               </motion.div>
             )}
 
