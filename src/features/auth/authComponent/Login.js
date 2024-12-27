@@ -2,7 +2,7 @@ import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import SUI from "../../../Assets/side-image.png"
-import { loginUserAsync, selectError, selectLoggedInUser } from "../authSlice";
+import { loginUserAsync, selectError, selectLoggedInUser, selectIsAdmin } from "../authSlice";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
@@ -18,7 +18,16 @@ const Login = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
   const user = useSelector(selectLoggedInUser);
+  const isAdmin = useSelector(selectIsAdmin);
   const [showPassword, setShowPassword] = useState(false);
+
+  // If user is logged in, redirect based on role
+  if (user) {
+    if (isAdmin) {
+      return <Navigate to="/admin" replace={true} />;
+    }
+    return <Navigate to="/" replace={true} />;
+  }
 
   // Animation variants
   const containerVariants = {
@@ -68,7 +77,6 @@ const Login = () => {
 
   return (
     <>
-      {user && <Navigate to="/" replace={true}></Navigate>}
       <motion.div 
         initial="hidden"
         animate="visible"
@@ -176,7 +184,9 @@ const Login = () => {
                   animate={{ opacity: 1 }}
                   className="rounded-md bg-red-50 dark:bg-red-900/30 p-4 transition-colors duration-200"
                 >
-                  <p className="text-sm text-red-600 dark:text-red-400">{error.message || error.error}</p>
+                  <p className="text-sm text-red-600 dark:text-red-400">
+                    {error.error?.message || error.message || error.error || "An unexpected error occurred"}
+                  </p>
                 </motion.div>
               )}
 
@@ -222,6 +232,7 @@ const Login = () => {
               <div className="text-center mt-4">
                 <p className="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-200">
                   Don't have an account?{" "}
+
                   <Link to="/signup" className="font-medium text-red-600 hover:text-red-500 dark:text-red-400 dark:hover:text-red-300 transition-colors duration-200">
                     Sign up
                   </Link>

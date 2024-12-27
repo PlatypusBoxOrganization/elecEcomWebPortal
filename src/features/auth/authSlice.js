@@ -1,124 +1,147 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginUser, createUser, verifyCode, resendOTP } from "./authAPI";
-// , signOut, checkAuth
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createUser, loginUser, verifyCode, resendOTP } from './authAPI';
+
 const initialState = {
-  loggedInUserToken: null, // this should only contain user identity => 'id'/'role'
-  status: "idle",
+  loggedInUser: null,
+  status: 'idle',
   error: null,
-  isVerified: false,
-  verificationError: null,
-  otpResent: false, // To track if OTP has been resent
-  otpError: null,
+  isAdmin: false,
+  isVerified: false
 };
 
 export const createUserAsync = createAsyncThunk(
-  "auth/createUser",
-  async (userData) => {
-    const response = await createUser(userData);
-    // The value we return becomes the `fulfilled` action payload
-    return response.data;
+  'user/createUser',
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await createUser(userData);
+      return response.data;
+    } catch (error) {
+      console.error('createUserAsync error:', error);
+      return rejectWithValue(error.message || 'Failed to create account');
+    }
   }
 );
 
 export const verifyCodeAsync = createAsyncThunk(
-  "auth/verifyCode",
-  async (verificationCode, { rejectWithValue }) => {
+  'user/verifyCode',
+  async ({ verificationCode }, { rejectWithValue }) => {
     try {
-      const response = await verifyCode({verificationCode});
-      if (!response.data.success) {
-        // If the success flag is false, reject with the error message
-        return rejectWithValue(response.data.message);
-      }
-      return response.data; // This will resolve successfully if success is true
+      const response = await verifyCode({ verificationCode });
+      return response.data;
     } catch (error) {
-      // Handle any error that occurs during the API call
-      return rejectWithValue("Unexpected error occurred");
+      return rejectWithValue(error.message || 'Failed to verify code');
     }
   }
 );
 
 export const resendOtpAsync = createAsyncThunk(
-  "auth/resendOtp",
+  'user/resendOtp',
   async (email, { rejectWithValue }) => {
     try {
-      const response = await resendOTP(email); // Pass email to the API function
-      return response; // Return the success data
+      const response = await resendOTP(email);
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message || "Failed to resend OTP");
+      return rejectWithValue(error.message || 'Failed to resend OTP');
     }
   }
 );
+
 export const loginUserAsync = createAsyncThunk(
-  "auth/loginUser",
+  'user/loginUser',
   async (loginInfo, { rejectWithValue }) => {
     try {
-      // Call the API function
       const response = await loginUser(loginInfo);
-      return response.data; // Pass data to the fulfilled action
+      return response.data;
     } catch (error) {
-      if (error && error.error) {
-        return rejectWithValue({ error: error }); // Use API error message
-      }
-      return rejectWithValue({ error: "Unexpected error occurred" }); // Fallback error message
+      return rejectWithValue(error.message || 'Failed to login');
     }
   }
 );
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    clearError: (state) => {
+      state.error = null;
+    },
+    logout: (state) => {
+      state.loggedInUser = null;
+      state.isAdmin = false;
+      state.isVerified = false;
+      state.error = null;
+    }
+  },
   extraReducers: (builder) => {
     builder
+      // Create User
       .addCase(createUserAsync.pending, (state) => {
-        state.status = "loading";
+        state.status = 'loading';
+        state.error = null;
       })
       .addCase(createUserAsync.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.loggedInUserToken = action.payload;
+        state.status = 'idle';
+        state.error = null;
       })
+      .addCase(createUserAsync.rejected, (state, action) => {
+        state.status = 'idle';
+        state.error = action.payload || 'Failed to create account';
+      })
+      
+      // Verify Code
       .addCase(verifyCodeAsync.pending, (state) => {
-        state.status = "loading";
+        state.status = 'loading';
+        state.error = null;
       })
       .addCase(verifyCodeAsync.fulfilled, (state) => {
-        state.status = "idle";
+        state.status = 'idle';
         state.isVerified = true;
-        state.verificationError = null;
+        state.error = null;
       })
       .addCase(verifyCodeAsync.rejected, (state, action) => {
-        state.status = "idle";
-        state.isVerified = false;
-        state.verificationError = action.payload; // Error message from the backend
+        state.status = 'idle';
+        state.error = action.payload || 'Failed to verify code';
       })
+      
+      // Resend OTP
       .addCase(resendOtpAsync.pending, (state) => {
-        state.status = "loading";
-        state.otpResent = false;
-        state.otpError = null;
+        state.status = 'loading';
+        state.error = null;
       })
-      .addCase(resendOtpAsync.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.otpResent = true;
-        state.otpError = null;
+      .addCase(resendOtpAsync.fulfilled, (state) => {
+        state.status = 'idle';
+        state.error = null;
       })
       .addCase(resendOtpAsync.rejected, (state, action) => {
-        state.status = "failed";
-        state.otpError = action.payload || "Failed to resend OTP";
+        state.status = 'idle';
+        state.error = action.payload || 'Failed to resend OTP';
       })
+      
+      // Login User
       .addCase(loginUserAsync.pending, (state) => {
-        state.status = "loading";
+        state.status = 'loading';
+        state.error = null;
       })
       .addCase(loginUserAsync.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.loggedInUserToken = action.payload;
+        state.status = 'idle';
+        state.loggedInUser = action.payload;
+        state.isAdmin = action.payload.role === 'ADMIN';
+        state.isVerified = true;
+        state.error = null;
       })
       .addCase(loginUserAsync.rejected, (state, action) => {
-        state.status = "idle";
-        state.error = action.payload;
+        state.status = 'idle';
+        state.error = action.payload || 'Failed to login';
       });
   },
 });
-export const {} = authSlice.actions;
-export const selectLoggedInUser = (state) => state.auth.loggedInUserToken;
+
+export const { clearError, logout } = authSlice.actions;
+
+export const selectLoggedInUser = (state) => state.auth.loggedInUser;
 export const selectError = (state) => state.auth.error;
+export const selectIsAdmin = (state) => state.auth.isAdmin;
+export const selectIsVerified = (state) => state.auth.isVerified;
+export const selectStatus = (state) => state.auth.status;
 
 export default authSlice.reducer;

@@ -1,275 +1,226 @@
-import { Navigate, Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { selectLoggedInUser, createUserAsync } from "../authSlice";
-import SUI from "../../../Assets/side-image.png";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { useTheme } from '../../../context/ThemeContext';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { createUserAsync, selectError } from '../authSlice';
+import { motion } from 'framer-motion';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
+import SUI from '../../../Assets/side-image.png';
 
 const Signup = () => {
-  const { darkMode } = useTheme();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
+    watch,
   } = useForm();
-  
   const dispatch = useDispatch();
-  const user = useSelector(selectLoggedInUser);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate();
+  const error = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
-
-  const formVariants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0, transition: { delay: 0.2, duration: 0.5 } }
-  };
-
-  // Define reusable styles
-  const inputStyles =
-    "block w-full rounded-lg border-0 px-4 py-3 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-red-500 dark:focus:ring-red-500 sm:text-sm sm:leading-6 bg-white dark:bg-gray-800 transition-colors duration-200";
-  const labelStyles = "block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100 mb-2 transition-colors duration-200";
-
-  // Form fields configuration
-  const formFields = [
-    {
-      id: "name",
-      label: "Full Name",
-      type: "text",
-      placeholder: "Enter your full name",
-      validation: { 
-        required: "Name is Required",
-        minLength: {
-          value: 2,
-          message: "Name must be at least 2 characters"
-        }
-      },
-    },
-    {
-      id: "email",
-      label: "Email Address",
-      type: "email",
-      placeholder: "Enter your email",
-      validation: {
-        required: "Email is required",
-        pattern: {
-          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-          message: "Invalid email address"
-        }
-      },
-    },
-    {
-      id: "password",
-      label: "Password",
-      type: showPassword ? "text" : "password",
-      placeholder: "Create a password",
-      validation: {
-        required: "Password is required",
-        minLength: {
-          value: 6,
-          message: "Password must be at least 6 characters"
-        },
-        pattern: {
-          value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
-          message: "Password must contain at least one letter and one number"
-        }
-      },
-    },
-    {
-      id: "confirmPassword",
-      label: "Confirm Password",
-      type: showConfirmPassword ? "text" : "password",
-      placeholder: "Confirm your password",
-      validation: {
-        required: "Please confirm your password",
-        validate: (value) => value === watch('password') || "Passwords do not match"
-      },
-    },
-  ];
-
-  // const onSubmit = async (data) => {
-  //   try {
-  //     const response = await dispatch(
-  //       createUserAsync({
-  //         email: data.email,
-  //         password: data.password,
-  //         addresses: [],
-  //         role: "user",
-  //         name: data.name,
-  //       })
-  //     ).unwrap();
-
-  //     if (response?.error) {
-  //       setErrorMessage("You are already registered. Please login.");
-  //       setSuccessMessage("");
-  //     } else {
-  //       setSuccessMessage("Signup successful! Please verify your account.");
-  //       setErrorMessage("");
-  //     }
-  //   } catch (error) {
-  //     console.error("Signup error:", error);
-  //     setErrorMessage("An error occurred during signup. Please try again.");
-  //     setSuccessMessage("");
-  //   }
-  // };
+  const password = watch('password', '');
 
   const onSubmit = async (data) => {
+    if (data.password !== data.confirmPassword) {
+      return;
+    }
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/signup`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          password: data.password,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setSuccessMessage("Signup successful! Please verify your account.");
-        setErrorMessage("");
-      } else {
-        setErrorMessage(result.message || "Signup failed.");
-        setSuccessMessage("");
-      }
-    } catch (error) {
-      console.error("Signup error:", error);
-      setErrorMessage("An error occurred during signup. Please try again.");
-      setSuccessMessage("");
+      // Remove confirmPassword before sending to API
+      const { confirmPassword, ...signupData } = data;
+      // For now, just navigate to verify page since backend is not ready
+      navigate('/verify', { state: { email: data.email } });
+    } catch (err) {
+      console.error('Failed to signup:', err);
     }
   };
 
   return (
-    <>
-      {user && <Navigate to="/" replace={true} />}
-      
-      <motion.div 
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-        className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200"
-      >
-        <div className="max-w-6xl w-full space-y-8 flex bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transition-colors duration-200">
-          {/* Left side - Form */}
-          <motion.div 
-            variants={formVariants}
-            className="w-full lg:w-1/2 px-8 py-12 lg:px-12"
-          >
-            <div>
-              <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white transition-colors duration-200">
-                Create an Account
-              </h2>
-              <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-300 transition-colors duration-200">
-                Please fill in your details to get started
-              </p>
-            </div>
+    <div className="min-h-screen flex">
+      {/* Left Side - Form */}
+      <div className="flex-1 flex items-center justify-center p-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-md w-full space-y-8"
+        >
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900">
+              Create your account
+            </h2>
+            <p className="mt-2 text-sm text-gray-600">
+              Join PlatypusBox and discover amazing products
+            </p>
+          </div>
 
-            <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
-              {formFields.map((field) => (
-                <div key={field.id}>
-                  <label htmlFor={field.id} className={labelStyles}>
-                    {field.label}
-                  </label>
-                  <div className="mt-1 relative">
-                    <input
-                      id={field.id}
-                      {...register(field.id, field.validation)}
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      className={inputStyles}
-                    />
-                    {(field.id === 'password' || field.id === 'confirmPassword') && (
-                      <button
-                        type="button"
-                        onClick={() => field.id === 'password' ? setShowPassword(!showPassword) : setShowConfirmPassword(!showConfirmPassword)}
-                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 dark:text-gray-500 transition-colors duration-200"
-                      >
-                        {(field.id === 'password' ? showPassword : showConfirmPassword) ? (
-                          <AiOutlineEyeInvisible className="h-5 w-5" />
-                        ) : (
-                          <AiOutlineEye className="h-5 w-5" />
-                        )}
-                      </button>
-                    )}
-                  </div>
-                  {errors[field.id]?.message && (
-                    <motion.p 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="mt-2 text-sm text-red-600 dark:text-red-400 transition-colors duration-200"
-                    >
-                      {errors[field.id].message}
-                    </motion.p>
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-6">
+            {error && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="rounded-md bg-red-50 p-4"
+              >
+                <p className="text-sm text-red-600">{error}</p>
+              </motion.div>
+            )}
+
+            <div className="space-y-4">
+              {/* Name */}
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                  Full Name
+                </label>
+                <div className="mt-1">
+                  <input
+                    {...register('name', {
+                      required: 'Name is required',
+                      minLength: {
+                        value: 2,
+                        message: 'Name must be at least 2 characters',
+                      },
+                    })}
+                    type="text"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500"
+                    placeholder="John Doe"
+                  />
+                  {errors.name && (
+                    <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
                   )}
                 </div>
-              ))}
+              </div>
 
-              {errorMessage && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="rounded-md bg-red-50 dark:bg-red-900/30 p-4 transition-colors duration-200"
-                >
-                  <p className="text-sm text-red-600 dark:text-red-400">{errorMessage}</p>
-                </motion.div>
-              )}
-
-              {successMessage && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="rounded-md bg-green-50 dark:bg-green-900/30 p-4 transition-colors duration-200"
-                >
-                  <p className="text-sm text-green-600 dark:text-green-400">{successMessage}</p>
-                </motion.div>
-              )}
-
+              {/* Email */}
               <div>
-                <button
-                  type="submit"
-                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
-                >
-                  Sign Up
-                </button>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email address
+                </label>
+                <div className="mt-1">
+                  <input
+                    {...register('email', {
+                      required: 'Email is required',
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: 'Invalid email address',
+                      },
+                    })}
+                    type="email"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500"
+                    placeholder="you@example.com"
+                  />
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                  )}
+                </div>
               </div>
 
-              <div className="text-center mt-4">
-                <p className="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-200">
-                  Already have an account?{" "}
-                  <Link to="/login" className="font-medium text-red-500 hover:text-red-600 transition-colors duration-200">
-                    Sign in
-                  </Link>
-                </p>
+              {/* Password */}
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
+                <div className="mt-1 relative">
+                  <input
+                    {...register('password', {
+                      required: 'Password is required',
+                      minLength: {
+                        value: 8,
+                        message: 'Password must be at least 8 characters',
+                      },
+                      pattern: {
+                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                        message:
+                          'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character',
+                      },
+                    })}
+                    type={showPassword ? 'text' : 'password'}
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500"
+                    placeholder="••••••••"
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <FiEyeOff className="h-5 w-5 text-gray-400" />
+                    ) : (
+                      <FiEye className="h-5 w-5 text-gray-400" />
+                    )}
+                  </button>
+                  {errors.password && (
+                    <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+                  )}
+                </div>
               </div>
-            </form>
-          </motion.div>
 
-          {/* Right side - Image */}
-          <motion.div 
-            variants={formVariants}
-            className="hidden lg:block lg:w-1/2 relative"
-          >
-            <img
-              src={SUI}
-              alt="Signup illustration"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          </motion.div>
-        </div>
-      </motion.div>
-    </>
+              {/* Confirm Password */}
+              <div>
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+                  Confirm Password
+                </label>
+                <div className="mt-1 relative">
+                  <input
+                    {...register('confirmPassword', {
+                      required: 'Please confirm your password',
+                      validate: value =>
+                        value === password || 'The passwords do not match',
+                    })}
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500"
+                    placeholder="••••••••"
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? (
+                      <FiEyeOff className="h-5 w-5 text-gray-400" />
+                    ) : (
+                      <FiEye className="h-5 w-5 text-gray-400" />
+                    )}
+                  </button>
+                  {errors.confirmPassword && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.confirmPassword.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              >
+                Sign up
+              </button>
+            </div>
+          </form>
+
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Already have an account?{' '}
+            <button
+              onClick={() => navigate('/login')}
+              className="font-medium text-red-600 hover:text-red-500"
+            >
+              Sign in
+            </button>
+          </p>
+        </motion.div>
+      </div>
+
+      {/* Right Side - Image */}
+      <div className="hidden lg:block lg:w-1/2">
+        <img
+          className="h-full w-full object-cover"
+          src={SUI}
+          alt="Signup illustration"
+        />
+      </div>
+    </div>
   );
 };
 
