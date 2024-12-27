@@ -42,7 +42,7 @@ const NavBar = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="text-2xl font-bold">
-              Exclusive
+              Kullo
             </Link>
 
             {/* Mobile menu button */}

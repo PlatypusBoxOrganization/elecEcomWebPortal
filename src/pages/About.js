@@ -2,71 +2,75 @@ import React from "react";
 import NavBar from "./NavBar";
 import { motion } from "framer-motion";
 import { 
-  FaShieldAlt, 
+  FaHeadphones, 
   FaTruck, 
   FaHeadset, 
-  FaMoneyBillWave,
+  FaCertificate,
   FaUsers,
   FaGlobe,
   FaHandshake,
-  FaHeart
+  FaHeart,
+  FaCheckCircle,
+  FaMicroscope,
+  FaUserMd,
+  FaClinicMedical
 } from "react-icons/fa";
 
 const About = () => {
   const features = [
     {
-      icon: FaShieldAlt,
-      title: "Secure Shopping",
-      description: "We prioritize your security with advanced encryption and secure payment methods.",
+      icon: FaHeadphones,
+      title: "Expert Audiology",
+      description: "Our certified audiologists provide comprehensive hearing assessments and personalized solutions.",
       color: "bg-blue-500"
     },
     {
       icon: FaTruck,
-      title: "Fast Delivery",
-      description: "Get your products delivered quickly with our efficient shipping partners.",
+      title: "Home Trials",
+      description: "Try our hearing aids at home with our 45-day risk-free trial period.",
       color: "bg-green-500"
     },
     {
       icon: FaHeadset,
-      title: "24/7 Support",
-      description: "Our customer support team is always ready to help you.",
+      title: "Lifetime Support",
+      description: "Ongoing care and support for all your hearing health needs.",
       color: "bg-purple-500"
     },
     {
-      icon: FaMoneyBillWave,
-      title: "Best Deals",
-      description: "We offer competitive prices and regular discounts on our products.",
+      icon: FaCertificate,
+      title: "Quality Guarantee",
+      description: "All our hearing aids are certified and backed by manufacturer warranty.",
       color: "bg-red-500"
     },
   ];
 
   const stats = [
-    { label: "Happy Customers", value: "10K+", icon: FaUsers },
-    { label: "Monthly Sales", value: "5K+", icon: FaMoneyBillWave },
-    { label: "Global Reach", value: "50+", subtext: "Countries", icon: FaGlobe },
-    { label: "Years of Excellence", value: "5+", icon: FaHandshake },
+    { label: "Satisfied Clients", value: "5K+", icon: FaUsers },
+    { label: "Hearing Tests", value: "10K+", icon: FaMicroscope },
+    { label: "Certified Audiologists", value: "20+", icon: FaUserMd },
+    { label: "Service Centers", value: "15+", icon: FaClinicMedical },
   ];
 
   const values = [
     {
-      title: "Customer First",
-      description: "We believe in putting our customers' needs first and providing exceptional service.",
+      title: "Patient-Centric Care",
+      description: "We prioritize your hearing health with personalized care and attention.",
       icon: FaHeart,
     },
     {
-      title: "Quality Assurance",
-      description: "Every product undergoes strict quality checks before reaching our customers.",
-      icon: FaShieldAlt,
+      title: "Professional Excellence",
+      description: "Our audiologists are certified and continuously trained in latest technologies.",
+      icon: FaCheckCircle,
     },
     {
-      title: "Global Standards",
-      description: "We maintain international standards in our operations and service delivery.",
+      title: "Advanced Technology",
+      description: "We offer state-of-the-art hearing solutions from leading manufacturers.",
       icon: FaGlobe,
     },
     {
-      title: "Community Focus",
-      description: "We actively participate in community development and sustainable practices.",
-      icon: FaUsers,
+      title: "Community Service",
+      description: "We're committed to improving hearing healthcare accessibility.",
+      icon: FaHandshake,
     },
   ];
 
@@ -105,7 +109,7 @@ const About = () => {
             transition={{ delay: 0.2 }}
             className="text-5xl md:text-6xl font-bold mb-6"
           >
-            Welcome to Exclusive
+            Your Hearing Health Partner
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -113,8 +117,8 @@ const About = () => {
             transition={{ delay: 0.4 }}
             className="text-xl md:text-2xl max-w-3xl mx-auto"
           >
-            Your premier destination for exclusive electronics and cutting-edge technology.
-            We're more than just a store - we're your technology partner.
+            Dedicated to improving lives through better hearing. We combine expertise, 
+            technology, and compassionate care to provide the best hearing solutions.
           </motion.p>
         </motion.div>
       </div>
@@ -209,8 +213,8 @@ const About = () => {
         >
           <h2 className="text-3xl font-bold mb-6 dark:text-white">Our Mission</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-            To revolutionize the electronics shopping experience by providing cutting-edge products,
-            exceptional service, and innovative solutions that enrich our customers' lives.
+            To revolutionize the hearing healthcare experience by providing cutting-edge solutions,
+            exceptional service, and compassionate care that enrich our patients' lives.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}

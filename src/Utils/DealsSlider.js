@@ -2,40 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import ps5 from '../Assets/ps5.png';
-import phone from '../Assets/phone.jpg';
-import computing from '../Assets/Computing.webp';
 
 const deals = [
   {
     id: 1,
-    title: "PlayStation 5",
-    subtitle: "Next-Gen Gaming",
-    description: "Experience lightning-fast loading with an ultra-high speed SSD, deeper immersion with support for haptic feedback.",
-    discount: "20% OFF",
-    image: ps5,
-    bgColor: "from-purple-600 to-blue-500",
-    link: "/category/gaming"
+    title: "Premium BTE Hearing Aids",
+    subtitle: "Behind-the-ear Excellence",
+    description: "Experience crystal-clear sound with our advanced behind-the-ear hearing aids featuring noise cancellation technology.",
+    discount: "Free Consultation",
+    image: "/images/bte.webp",
+    bgColor: "from-blue-600 to-blue-400",
+    link: "/category/behind-the-ear"
   },
   {
     id: 2,
-    title: "iPhone 15 Pro",
-    subtitle: "Pro Camera System",
-    description: "Capture stunning photos and videos with the advanced camera system and A17 Pro chip.",
-    discount: "15% OFF",
-    image: phone,
-    bgColor: "from-gray-800 to-gray-900",
-    link: "/category/phones"
+    title: "Custom ITE Devices",
+    subtitle: "Invisible Comfort",
+    description: "Discreet and comfortable in-the-ear hearing solutions customized to your unique needs.",
+    discount: "Free Fitting",
+    image: "/images/custom ite.png",
+    bgColor: "from-gray-700 to-gray-800",
+    link: "/category/in-the-ear"
   },
   {
     id: 3,
-    title: "MacBook Pro",
-    subtitle: "Power & Performance",
-    description: "Supercharged by M2 Pro or M2 Max chip for exceptional performance and amazing battery life.",
-    discount: "10% OFF",
-    image: computing,
-    bgColor: "from-red-500 to-pink-500",
-    link: "/category/computers"
+    title: "Essential Accessories",
+    subtitle: "Complete Care Kit",
+    description: "Premium care accessories including cleaning tools, batteries, and protective cases.",
+    discount: "20% OFF",
+    image: "/images/bte1.png",
+    bgColor: "from-red-500 to-red-400",
+    link: "/category/accessories"
   }
 ];
 
@@ -176,7 +173,7 @@ const DealsSlider = () => {
                 >
                   <div className="relative w-full h-full">
                     <img
-                      src={deals[currentSlide].image}
+                      src={process.env.PUBLIC_URL + deals[currentSlide].image}
                       alt={deals[currentSlide].title}
                       className="absolute inset-0 w-full h-full object-contain p-4 md:p-8"
                     />

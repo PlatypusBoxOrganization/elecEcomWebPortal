@@ -1,81 +1,61 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { FiGift, FiTag, FiClock } from "react-icons/fi";
-import gamingSetup from "../Assets/gaming setup.jpg";
-import gadgetsCollection from "../Assets/gadgetsection.webp";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const SalesSection = () => {
-  return (
-    <section className="max-w-7xl mx-auto px-4 py-16 dark:bg-gray-900">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-        {/* Left Sale Item */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="relative h-[300px] sm:h-[400px] rounded-lg sm:rounded-2xl overflow-hidden group"
-        >
-          <img
-            src={gamingSetup}
-            alt="Gaming Setup"
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent dark:from-black/80" />
-          <div className="absolute bottom-0 left-0 p-4 sm:p-6 lg:p-8 text-white">
-            <span className="inline-block bg-red-500 text-white px-3 sm:px-4 py-1 rounded-md mb-3 sm:mb-4 text-sm sm:text-base">
-              New Season
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">
-              Gaming Setup
-              <br />
-              Collection
-            </h3>
-            <p className="text-sm sm:text-base text-gray-200 dark:text-gray-300 mb-4 sm:mb-6">
-              Save up to 50% on selected gaming gear
-            </p>
-            <Link
-              to="/category/gaming"
-              className="inline-block bg-white text-black px-4 sm:px-6 py-1.5 sm:py-2 rounded-md text-sm sm:text-base font-semibold hover:bg-gray-100 transition-colors dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
-            >
-              Shop Now
-            </Link>
-          </div>
-        </motion.div>
+  const promotions = [
+    {
+      id: 1,
+      title: "Free Hearing Test",
+      description: "Book a comprehensive hearing assessment with our experts",
+      image: "hearing-test.jpg", // Replace with actual image
+      link: "/services/hearing-test"
+    },
+    {
+      id: 2,
+      title: "Special Offer on BTE Aids",
+      description: "Up to 20% off on selected behind-the-ear hearing aids",
+      image: "bte-offer.jpg", // Replace with actual image
+      link: "/category/behind-the-ear"
+    },
+    {
+      id: 3,
+      title: "Battery Bundle Deal",
+      description: "Buy 3 packs of batteries, get 1 free",
+      image: "battery-deal.jpg", // Replace with actual image
+      link: "/category/batteries"
+    }
+  ];
 
-        {/* Right Sale Item */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="relative h-[300px] sm:h-[400px] rounded-lg sm:rounded-2xl overflow-hidden group"
-        >
-          <img
-            src={gadgetsCollection}
-            alt="Gadgets Collection"
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent dark:from-black/80" />
-          <div className="absolute bottom-0 left-0 p-4 sm:p-6 lg:p-8 text-white">
-            <span className="inline-block bg-green-500 text-white px-3 sm:px-4 py-1 rounded-md mb-3 sm:mb-4 text-sm sm:text-base">
-              Trending Now
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">
-              Latest Gadgets
-              <br />
-              Collection
-            </h3>
-            <p className="text-sm sm:text-base text-gray-200 dark:text-gray-300 mb-4 sm:mb-6">
-              Discover cutting-edge technology
-            </p>
-            <Link
-              to="/category/gadgets"
-              className="inline-block bg-white text-black px-4 sm:px-6 py-1.5 sm:py-2 rounded-md text-sm sm:text-base font-semibold hover:bg-gray-100 transition-colors dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+        Special Offers & Services
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {promotions.map((promo) => (
+          <Link key={promo.id} to={promo.link}>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
             >
-              Shop Now
-            </Link>
-          </div>
-        </motion.div>
+              <div className="relative h-48">
+                <img
+                  src={promo.image}
+                  alt={promo.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <h3 className="text-xl font-bold mb-2">{promo.title}</h3>
+                  <p className="text-sm">{promo.description}</p>
+                </div>
+              </div>
+            </motion.div>
+          </Link>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 

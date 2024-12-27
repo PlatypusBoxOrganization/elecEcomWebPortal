@@ -7,262 +7,659 @@ import { addToCart } from "../features/cart/cartSlice";
 import { toast } from "react-toastify";
 import NavBar from "./NavBar";
 
-// Import category images
-import computing from "../Assets/Computing.webp";
-import gaming from "../Assets/Gaming.webp";
-import audio from "../Assets/Audio.webp";
-import homeAutomation from "../Assets/HomeAutomation.webp";
-import wearable from "../Assets/Wearable.jpg";
-import ps5 from "../Assets/ps5.png";
-import speakers from "../Assets/speakers.png";
-import phone from "../Assets/phone.jpg";
+// Use placeholder image for all products
+const placeholderImage = "/images/product-placeholder.png";
 
 const categoryProducts = {
-  phones: [
+  "behind-the-ear": [
     {
-      id: "iphone-15-pro",
-      name: "iPhone 15 Pro",
-      image: phone,
-      price: 129999,
-      originalPrice: 139999,
-      discount: 7,
-      ratings: 485,
-      description: "Latest iPhone with A17 Pro chip and titanium design",
-      category: "phones",
-      brand: "Apple",
+      id: "premium-bte-aids",
+      name: "Premium BTE Hearing Aids",
+      image: placeholderImage,
+      price: 89999,
+      originalPrice: 99999,
+      discount: 10,
+      ratings: 245,
+      description: "Experience crystal-clear sound with our advanced behind-the-ear hearing aids featuring noise cancellation technology.",
+      category: "behind-the-ear",
+      brand: "Kullo",
       inStock: true,
       features: [
-        "A17 Pro chip",
-        "48MP camera system",
-        "Titanium design",
-        "Action button"
+        "AI-powered noise reduction",
+        "Bluetooth connectivity",
+        "Rechargeable battery",
+        "Water-resistant",
+        "Smartphone app control"
       ]
     },
     {
-      id: "samsung-s23-ultra",
-      name: "Samsung Galaxy S23 Ultra",
-      image: phone,
-      price: 124999,
-      originalPrice: 134999,
-      discount: 7,
-      ratings: 425,
-      description: "Premium Android flagship with S Pen",
-      category: "phones",
-      brand: "Samsung",
-      inStock: true,
-      features: [
-        "200MP camera",
-        "S Pen included",
-        "Snapdragon 8 Gen 2",
-        "5000mAh battery"
-      ]
-    },
-    {
-      id: "pixel-8-pro",
-      name: "Google Pixel 8 Pro",
-      image: phone,
-      price: 106999,
-      originalPrice: 114999,
-      discount: 7,
-      ratings: 325,
-      description: "Google's latest flagship with AI features",
-      category: "phones",
-      brand: "Google",
-      inStock: true,
-      features: [
-        "Tensor G3 chip",
-        "AI photography",
-        "7 years of updates",
-        "Temperature sensor"
-      ]
-    },
-    {
-      id: "oneplus-11",
-      name: "OnePlus 11",
-      image: phone,
-      price: 56999,
-      originalPrice: 64999,
+      id: "bte-comfort-plus",
+      name: "BTE Comfort Plus",
+      image: placeholderImage,
+      price: 74999,
+      originalPrice: 84999,
       discount: 12,
-      ratings: 385,
-      description: "Flagship killer with Hasselblad cameras",
-      category: "phones",
-      brand: "OnePlus",
+      ratings: 188,
+      description: "Discreet and comfortable behind-the-ear hearing solutions customized to your unique needs.",
+      category: "behind-the-ear",
+      brand: "Kullo",
       inStock: true,
       features: [
-        "Snapdragon 8 Gen 2",
-        "Hasselblad cameras",
-        "100W charging",
-        "AMOLED display"
-      ]
-    }
-  ],
-  computers: [
-    {
-      id: "macbook-pro-m2",
-      name: "MacBook Pro M2",
-      description: "Latest MacBook Pro with M2 chip",
-      price: 1299,
-      rating: 4.9,
-      image: computing,
-      category: "Computers",
-      stock: 10,
-      features: [
-        "M2 Pro or M2 Max chip",
-        "Up to 96GB unified memory",
-        "Up to 22 hours battery life",
-        "Liquid Retina XDR display"
+        "Natural sound processing",
+        "Feedback cancellation",
+        "Long battery life",
+        "Discreet design",
+        "Wind noise reduction"
       ]
     },
     {
-      id: "dell-xps-15",
-      name: "Dell XPS 15",
-      description: "Premium Windows Laptop",
-      price: 1499,
-      rating: 4.8,
-      image: computing,
-      category: "Computers",
-      stock: 15,
+      id: "bte-essential",
+      name: "BTE Essential",
+      image: placeholderImage,
+      price: 59999,
+      originalPrice: 69999,
+      discount: 14,
+      ratings: 156,
+      description: "Essential behind-the-ear hearing aids with advanced features for clear and natural sound.",
+      category: "behind-the-ear",
+      brand: "Kullo",
+      inStock: true,
       features: [
-        "12th Gen Intel Core processors",
-        "NVIDIA RTX graphics",
-        "15.6-inch 4K OLED display",
-        "Up to 64GB RAM"
-      ]
-    }
-  ],
-  gaming: [
-    {
-      id: "ps5-console",
-      name: "PlayStation 5",
-      description: "Next-gen gaming console",
-      price: 499,
-      rating: 4.9,
-      image: ps5,
-      category: "Gaming",
-      stock: 5,
-      features: [
-        "4K gaming",
-        "Ray tracing support",
-        "Ultra-high speed SSD",
-        "3D Audio"
+        "Digital sound processing",
+        "Multiple listening programs",
+        "Battery powered",
+        "Easy volume control",
+        "Affordable care"
       ]
     },
     {
-      id: "gaming-pc",
-      name: "Gaming PC",
-      description: "High-end gaming desktop",
+      id: "bte-mini",
+      name: "BTE Mini",
+      image: placeholderImage,
+      price: 64999,
+      originalPrice: 74999,
+      discount: 13,
+      ratings: 172,
+      description: "Compact and powerful behind-the-ear hearing aids with premium features.",
+      category: "behind-the-ear",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Ultra-compact design",
+        "Advanced sound clarity",
+        "Moisture resistant",
+        "Automatic adjustment",
+        "Tinnitus masking"
+      ]
+    }
+  ],
+  "in-the-ear": [
+    {
+      id: "custom-ite-pro",
+      name: "Custom ITE Devices",
+      image: placeholderImage,
+      price: 94999,
+      originalPrice: 104999,
+      discount: 10,
+      ratings: 215,
+      description: "Discreet and comfortable in-the-ear hearing solutions customized to your unique needs.",
+      category: "in-the-ear",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Custom-molded design",
+        "Advanced noise reduction",
+        "Bluetooth connectivity",
+        "Rechargeable battery",
+        "Smartphone app control"
+      ]
+    },
+    {
+      id: "ite-invisible",
+      name: "ITE Invisible Elite",
+      image: placeholderImage,
+      price: 79999,
+      originalPrice: 89999,
+      discount: 11,
+      ratings: 168,
+      description: "Nearly invisible in-the-ear hearing aids with premium sound quality and comfort.",
+      category: "in-the-ear",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Ultra-discreet design",
+        "Natural sound processing",
+        "Adaptive feedback cancellation",
+        "Long battery life",
+        "Wind noise reduction"
+      ]
+    },
+    {
+      id: "ite-comfort",
+      name: "ITE Comfort Series",
+      image: placeholderImage,
+      price: 69999,
+      originalPrice: 79999,
+      discount: 13,
+      ratings: 142,
+      description: "Comfortable and reliable in-the-ear hearing aids for all-day wear.",
+      category: "in-the-ear",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Ergonomic fit",
+        "Multiple sound environments",
+        "Easy volume control",
+        "Moisture resistant",
+        "Tinnitus masking"
+      ]
+    },
+    {
+      id: "ite-essential",
+      name: "ITE Essential",
+      image: placeholderImage,
+      price: 54999,
+      originalPrice: 64999,
+      discount: 15,
+      ratings: 178,
+      description: "Essential in-the-ear hearing aids with advanced features at an affordable price.",
+      category: "in-the-ear",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Digital sound processing",
+        "Customizable programs",
+        "Battery powered",
+        "Background noise reduction",
+        "Clear voice focus"
+      ]
+    }
+  ],
+  "accessories": [
+    {
+      id: "premium-care-kit",
+      name: "Premium Care Kit",
+      image: placeholderImage,
+      price: 4999,
+      originalPrice: 5999,
+      discount: 17,
+      ratings: 325,
+      description: "Complete care kit including cleaning tools, batteries, and protective cases for your hearing aids.",
+      category: "accessories",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Professional cleaning tools",
+        "UV sanitizer box",
+        "Dehumidifier",
+        "Battery tester",
+        "Travel case"
+      ]
+    },
+    {
+      id: "rechargeable-battery-kit",
+      name: "Rechargeable Battery Kit",
+      image: placeholderImage,
+      price: 7999,
+      originalPrice: 8999,
+      discount: 11,
+      ratings: 245,
+      description: "High-capacity rechargeable batteries with charging dock for hearing aids.",
+      category: "accessories",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Fast charging capability",
+        "Long battery life",
+        "LED indicators",
+        "Multiple charging slots",
+        "Portable design"
+      ]
+    },
+    {
+      id: "hearing-aid-dryer",
+      name: "Electronic Dryer & Sanitizer",
+      image: placeholderImage,
+      price: 6499,
+      originalPrice: 7499,
+      discount: 13,
+      ratings: 198,
+      description: "Professional electronic dryer and UV sanitizer for hearing aids maintenance.",
+      category: "accessories",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "UV-C sanitization",
+        "Moisture removal",
+        "Temperature control",
+        "Timer function",
+        "Compact design"
+      ]
+    },
+    {
+      id: "maintenance-essentials",
+      name: "Maintenance Essentials Kit",
+      image: placeholderImage,
+      price: 2999,
+      originalPrice: 3999,
+      discount: 25,
+      ratings: 287,
+      description: "Essential maintenance tools and supplies for daily hearing aid care.",
+      category: "accessories",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Cleaning brushes",
+        "Wax removal tools",
+        "Air blower",
+        "Cleaning wipes",
+        "Storage case"
+      ]
+    },
+    {
+      id: "bluetooth-streamer",
+      name: "Bluetooth Audio Streamer",
+      image: placeholderImage,
+      price: 8999,
+      originalPrice: 9999,
+      discount: 10,
+      ratings: 156,
+      description: "Stream audio directly from your devices to your hearing aids.",
+      category: "accessories",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Multi-device connectivity",
+        "Long range streaming",
+        "Battery indicator",
+        "Voice control support",
+        "App compatibility"
+      ]
+    },
+    {
+      id: "protection-pack",
+      name: "Weather Protection Pack",
+      image: placeholderImage,
       price: 1999,
-      rating: 4.7,
-      image: gaming,
-      category: "Gaming",
-      stock: 8,
+      originalPrice: 2499,
+      discount: 20,
+      ratings: 223,
+      description: "Protect your hearing aids from moisture, dust, and daily wear.",
+      category: "accessories",
+      brand: "Kullo",
+      inStock: true,
       features: [
-        "RTX 4080 Graphics",
-        "Intel i9 processor",
-        "32GB DDR5 RAM",
-        "2TB NVMe SSD"
+        "Waterproof covers",
+        "Dust protectors",
+        "Sweatbands",
+        "Cord clips",
+        "Storage pouch"
       ]
     }
   ],
-  audio: [
+  "batteries": [
     {
-      id: "premium-speakers",
-      name: "Premium Speakers",
-      description: "Wireless surround sound system",
-      price: 299,
-      rating: 4.8,
-      image: speakers,
-      category: "Audio",
-      stock: 20,
+      id: "premium-rechargeable",
+      name: "Premium Rechargeable Battery Kit",
+      image: placeholderImage,
+      price: 8999,
+      originalPrice: 9999,
+      discount: 10,
+      ratings: 412,
+      description: "High-performance rechargeable battery kit with charging station for hearing aids.",
+      category: "batteries",
+      brand: "Kullo",
+      inStock: true,
       features: [
-        "360° Spatial Audio",
-        "Wireless connectivity",
-        "Voice assistant support",
-        "Multi-room audio"
+        "Fast charging technology",
+        "Up to 30 hours per charge",
+        "Smart charging case",
+        "Battery health monitoring",
+        "Multiple charging slots"
       ]
     },
     {
-      id: "noise-cancelling-headphones",
-      name: "Noise-Cancelling Headphones",
-      description: "Premium wireless headphones",
-      price: 249,
-      rating: 4.7,
-      image: audio,
-      category: "Audio",
-      stock: 25,
+      id: "size-10-batteries",
+      name: "Size 10 Hearing Aid Batteries",
+      image: placeholderImage,
+      price: 499,
+      originalPrice: 599,
+      discount: 17,
+      ratings: 368,
+      description: "Long-lasting Size 10 zinc-air batteries for small hearing aids.",
+      category: "batteries",
+      brand: "Kullo",
+      inStock: true,
       features: [
-        "Active noise cancellation",
-        "40-hour battery life",
-        "Hi-Res Audio certified",
-        "Multi-device pairing"
+        "Pack of 60 batteries",
+        "Long shelf life",
+        "Easy-to-open packaging",
+        "Color-coded for size",
+        "Mercury-free"
+      ]
+    },
+    {
+      id: "size-13-batteries",
+      name: "Size 13 Hearing Aid Batteries",
+      image: placeholderImage,
+      price: 599,
+      originalPrice: 699,
+      discount: 14,
+      ratings: 295,
+      description: "Reliable Size 13 zinc-air batteries for standard hearing aids.",
+      category: "batteries",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Pack of 60 batteries",
+        "Extended battery life",
+        "Easy activation tabs",
+        "Color-coded for size",
+        "High energy density"
+      ]
+    },
+    {
+      id: "size-312-batteries",
+      name: "Size 312 Hearing Aid Batteries",
+      image: placeholderImage,
+      price: 549,
+      originalPrice: 649,
+      discount: 15,
+      ratings: 342,
+      description: "Dependable Size 312 zinc-air batteries for modern hearing aids.",
+      category: "batteries",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Pack of 60 batteries",
+        "Consistent power output",
+        "Easy-to-handle design",
+        "Color-coded for size",
+        "Air-sealed packaging"
+      ]
+    },
+    {
+      id: "size-675-batteries",
+      name: "Size 675 Hearing Aid Batteries",
+      image: placeholderImage,
+      price: 649,
+      originalPrice: 749,
+      discount: 13,
+      ratings: 278,
+      description: "Powerful Size 675 zinc-air batteries for power-hungry hearing aids.",
+      category: "batteries",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Pack of 60 batteries",
+        "Maximum power output",
+        "Long-lasting performance",
+        "Color-coded for size",
+        "Premium quality cells"
+      ]
+    },
+    {
+      id: "battery-value-pack",
+      name: "Multi-Size Battery Value Pack",
+      image: placeholderImage,
+      price: 1999,
+      originalPrice: 2499,
+      discount: 20,
+      ratings: 186,
+      description: "Comprehensive battery pack with all common hearing aid battery sizes.",
+      category: "batteries",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "All sizes included",
+        "120 batteries total",
+        "Convenient storage box",
+        "Color-coded organizer",
+        "Best value package"
       ]
     }
   ],
-  "smart home": [
+  "maintenance": [
     {
-      id: "smart-hub",
-      name: "Smart Hub",
-      description: "Central control for your smart home",
-      price: 149,
-      rating: 4.6,
-      image: homeAutomation,
-      category: "Smart Home",
-      stock: 30,
+      id: "pro-cleaning-kit",
+      name: "Professional Cleaning Kit",
+      image: placeholderImage,
+      price: 3999,
+      originalPrice: 4999,
+      discount: 20,
+      ratings: 385,
+      description: "Complete professional-grade cleaning kit for all types of hearing aids.",
+      category: "maintenance",
+      brand: "Kullo",
+      inStock: true,
       features: [
-        "Voice control",
-        "Multi-device support",
-        "Energy monitoring",
-        "Automation routines"
+        "Multi-tool cleaner",
+        "Wax removal system",
+        "Cleaning solution",
+        "Drying capsules",
+        "Brush set"
       ]
     },
     {
-      id: "smart-security",
-      name: "Smart Security System",
-      description: "Complete home security solution",
-      price: 399,
-      rating: 4.8,
-      image: homeAutomation,
-      category: "Smart Home",
-      stock: 12,
+      id: "uv-sanitizer-pro",
+      name: "UV Sanitizer Pro",
+      image: placeholderImage,
+      price: 5999,
+      originalPrice: 6999,
+      discount: 14,
+      ratings: 292,
+      description: "Advanced UV-C sanitization system for thorough hearing aid disinfection.",
+      category: "maintenance",
+      brand: "Kullo",
+      inStock: true,
       features: [
-        "4K security cameras",
-        "24/7 monitoring",
-        "Motion detection",
-        "Mobile alerts"
+        "360° UV-C coverage",
+        "3-minute sanitization",
+        "Built-in timer",
+        "Auto shutoff",
+        "LED indicators"
+      ]
+    },
+    {
+      id: "dehumidifier-plus",
+      name: "Electronic Dehumidifier Plus",
+      image: placeholderImage,
+      price: 4499,
+      originalPrice: 5499,
+      discount: 18,
+      ratings: 246,
+      description: "Electronic dehumidifier for overnight moisture removal and maintenance.",
+      category: "maintenance",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Forced air circulation",
+        "Temperature control",
+        "8-hour cycle",
+        "Status display",
+        "Portable design"
+      ]
+    },
+    {
+      id: "cleaning-solution-kit",
+      name: "Premium Cleaning Solution Kit",
+      image: placeholderImage,
+      price: 1499,
+      originalPrice: 1999,
+      discount: 25,
+      ratings: 328,
+      description: "Specialized cleaning solutions for daily hearing aid maintenance.",
+      category: "maintenance",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Antimicrobial formula",
+        "Wax dissolving solution",
+        "Moisture repellent",
+        "Brush cleaner",
+        "Travel-sized bottles"
+      ]
+    },
+    {
+      id: "maintenance-tools",
+      name: "Professional Tool Set",
+      image: placeholderImage,
+      price: 2499,
+      originalPrice: 2999,
+      discount: 17,
+      ratings: 275,
+      description: "Comprehensive set of professional maintenance tools for hearing aids.",
+      category: "maintenance",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Precision screwdrivers",
+        "Tube cleaning tools",
+        "Filter replacement tools",
+        "Magnifying glass",
+        "Storage case"
+      ]
+    },
+    {
+      id: "drying-capsules",
+      name: "Moisture Guard Capsules",
+      image: placeholderImage,
+      price: 799,
+      originalPrice: 999,
+      discount: 20,
+      ratings: 412,
+      description: "Highly effective moisture absorption capsules for hearing aid storage.",
+      category: "maintenance",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Pack of 12 capsules",
+        "Color change indicator",
+        "6-month supply",
+        "Reusable container",
+        "Travel pouch"
       ]
     }
   ],
-  wearables: [
+  "custom-solutions": [
     {
-      id: "smart-watch-pro",
-      name: "Smart Watch Pro",
-      description: "Advanced fitness tracking",
-      price: 299,
-      rating: 4.7,
-      image: wearable,
-      category: "Wearables",
-      stock: 18,
+      id: "custom-shell-ite",
+      name: "Custom Shell ITE Solution",
+      image: placeholderImage,
+      price: 24999,
+      originalPrice: 29999,
+      discount: 17,
+      ratings: 245,
+      description: "Personalized in-the-ear hearing aid with custom-fitted shell for optimal comfort.",
+      category: "custom-solutions",
+      brand: "Kullo",
+      inStock: true,
       features: [
-        "Heart rate monitoring",
-        "GPS tracking",
-        "Sleep analysis",
-        "5-day battery life"
+        "3D ear scanning",
+        "Custom shell design",
+        "Precise acoustic tuning",
+        "Comfort-fit guarantee",
+        "Natural sound profile"
       ]
     },
     {
-      id: "fitness-band",
-      name: "Fitness Band",
-      description: "24/7 health monitoring",
-      price: 99,
-      rating: 4.5,
-      image: wearable,
-      category: "Wearables",
-      stock: 40,
+      id: "custom-musician-monitor",
+      name: "Musician's Custom Monitor",
+      image: placeholderImage,
+      price: 34999,
+      originalPrice: 39999,
+      discount: 13,
+      ratings: 178,
+      description: "Professional-grade custom monitors designed specifically for musicians.",
+      category: "custom-solutions",
+      brand: "Kullo",
+      inStock: true,
       features: [
-        "Activity tracking",
-        "Heart rate monitor",
-        "Sleep tracking",
-        "Water resistant"
+        "Balanced armature drivers",
+        "Custom frequency response",
+        "Noise isolation -26dB",
+        "Detachable cables",
+        "Stage-ready design"
+      ]
+    },
+    {
+      id: "custom-swim-solution",
+      name: "Aqua Custom Solution",
+      image: placeholderImage,
+      price: 29999,
+      originalPrice: 34999,
+      discount: 14,
+      ratings: 156,
+      description: "Waterproof custom-fitted hearing aids for swimming and water activities.",
+      category: "custom-solutions",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Waterproof design",
+        "Antimicrobial coating",
+        "Pressure equalization",
+        "Secure fit system",
+        "Swimming compatible"
+      ]
+    },
+    {
+      id: "custom-pediatric",
+      name: "Pediatric Custom Solution",
+      image: placeholderImage,
+      price: 27999,
+      originalPrice: 32999,
+      discount: 15,
+      ratings: 203,
+      description: "Specially designed custom hearing aids for children with growing ears.",
+      category: "custom-solutions",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Growth adaptable",
+        "Impact resistant",
+        "Parent controls",
+        "Location tracking",
+        "Tamper-proof battery"
+      ]
+    },
+    {
+      id: "custom-tinnitus",
+      name: "Tinnitus Custom Solution",
+      image: placeholderImage,
+      price: 32999,
+      originalPrice: 37999,
+      discount: 13,
+      ratings: 267,
+      description: "Custom-programmed solution specifically for tinnitus management.",
+      category: "custom-solutions",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Sound therapy",
+        "Custom programming",
+        "Multiple profiles",
+        "Sleep mode",
+        "Tinnitus masking"
+      ]
+    },
+    {
+      id: "custom-industrial",
+      name: "Industrial Custom Solution",
+      image: placeholderImage,
+      price: 39999,
+      originalPrice: 44999,
+      discount: 11,
+      ratings: 189,
+      description: "Heavy-duty custom hearing protection and communication solution for industrial use.",
+      category: "custom-solutions",
+      brand: "Kullo",
+      inStock: true,
+      features: [
+        "Noise cancellation",
+        "Radio integration",
+        "Impact protection",
+        "Extended battery",
+        "Environmental sealing"
       ]
     }
   ]
@@ -294,76 +691,71 @@ const CategoryPage = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold mb-4 capitalize dark:text-white">
-            {category.replace(/%20/g, " ")}
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            {category.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
           </h1>
-          <p className="text-gray-600 dark:text-gray-300">
-            Explore our collection of {category.toLowerCase().replace(/%20/g, " ")} products
-          </p>
         </motion.div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {/* Product Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {products.map((product) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -5 }}
+              whileHover={{ scale: 1.02 }}
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden cursor-pointer"
               onClick={() => handleProductClick(product.id)}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="relative aspect-square dark:bg-gray-700">
+              <div className="relative h-48">
                 <img
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
-                {/* Stock badge */}
-                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold
-                  ${product.stock > 0 ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>
-                  {product.stock > 0 ? `In Stock (${product.stock})` : 'Out of Stock'}
-                </div>
+                {product.discount > 0 && (
+                  <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-sm">
+                    {product.discount}% OFF
+                  </div>
+                )}
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 dark:text-white">
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
                   {product.name}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                   {product.description}
                 </p>
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <FaStar
-                      key={i}
-                      className={`w-4 h-4 ${
-                        i < Math.floor(product.rating)
-                          ? "text-yellow-400"
-                          : "text-gray-300 dark:text-gray-600"
-                      }`}
-                    />
-                  ))}
-                  <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
-                    ({product.rating})
+                <div className="flex items-center mb-2">
+                  <div className="flex items-center text-yellow-400">
+                    <FaStar />
+                    <span className="ml-1 text-sm text-gray-600 dark:text-gray-300">
+                      {(product.ratings / 100).toFixed(1)}
+                    </span>
+                  </div>
+                  <span className="mx-2 text-gray-400">•</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">
+                    {product.ratings} reviews
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-red-500 dark:text-red-400">
-                    ${product.price}
-                  </span>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <div>
+                    <span className="text-xl font-bold text-gray-900 dark:text-white">
+                      ₹{product.price.toLocaleString()}
+                    </span>
+                    {product.originalPrice > product.price && (
+                      <span className="ml-2 text-sm text-gray-500 line-through">
+                        ₹{product.originalPrice.toLocaleString()}
+                      </span>
+                    )}
+                  </div>
+                  <button
                     onClick={(e) => handleAddToCart(e, product)}
-                    disabled={!product.stock}
-                    className={`flex items-center space-x-2 px-6 py-2 rounded-lg font-semibold
-                      ${product.stock > 0 
-                        ? 'bg-red-500 dark:bg-red-600 text-white hover:bg-red-600 dark:hover:bg-red-700' 
-                        : 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'}`}
+                    className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
                   >
-                    <FaShoppingCart />
-                    <span>{product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}</span>
-                  </motion.button>
+                    <FaShoppingCart className="mr-2" />
+                    Add
+                  </button>
                 </div>
               </div>
             </motion.div>

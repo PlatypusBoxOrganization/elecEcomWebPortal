@@ -3,56 +3,50 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 
-// Import product images
-import ps5 from '../Assets/ps5.png';
-import phone from '../Assets/phone.jpg';
-import computing from '../Assets/Computing.webp';
-import audio from '../Assets/Audio.webp';
-
 const bestSellingProducts = [
   {
-    id: 'ps5-console',
-    name: 'PlayStation 5 Console',
-    image: ps5,
-    price: 49999,
-    originalPrice: 54999,
-    discount: 9,
+    id: 'premium-bte-aids',
+    name: 'Premium BTE Hearing Aids',
+    image: '/images/product-placeholder.png',
+    price: 89999,
+    originalPrice: 99999,
+    discount: 10,
     ratings: 495,
-    description: "Next-gen gaming console with ultra-high speed SSD",
-    category: "gaming"
+    description: "Advanced digital hearing aids with noise cancellation",
+    category: "behind-the-ear"
   },
   {
-    id: 'iphone-15-pro',
-    name: 'iPhone 15 Pro',
-    image: phone,
-    price: 129999,
-    originalPrice: 139999,
-    discount: 7,
+    id: 'custom-ite-pro',
+    name: 'Custom ITE Devices',
+    image: '/images/product-placeholder.png',
+    price: 94999,
+    originalPrice: 104999,
+    discount: 10,
     ratings: 485,
-    description: "Latest iPhone with A17 Pro chip",
-    category: "phones"
+    description: "Custom-fitted in-the-ear hearing solution",
+    category: "in-the-ear"
   },
   {
-    id: 'macbook-pro-m2',
-    name: 'MacBook Pro M2',
-    image: computing,
-    price: 199999,
-    originalPrice: 219999,
-    discount: 9,
+    id: 'custom-musician-monitor',
+    name: "Musician's Custom Monitor",
+    image: '/images/product-placeholder.png',
+    price: 34999,
+    originalPrice: 39999,
+    discount: 13,
     ratings: 475,
-    description: "Powerful laptop with M2 chip",
-    category: "computers"
+    description: "Professional-grade custom monitors for musicians",
+    category: "custom-solutions"
   },
   {
-    id: 'sony-wh1000xm5',
-    name: 'Sony WH-1000XM5',
-    image: audio,
-    price: 29999,
-    originalPrice: 34999,
+    id: 'uv-sanitizer-pro',
+    name: 'UV Sanitizer Pro',
+    image: '/images/product-placeholder.png',
+    price: 5999,
+    originalPrice: 6999,
     discount: 14,
     ratings: 465,
-    description: "Premium noise-cancelling headphones",
-    category: "audio"
+    description: "Advanced UV-C sanitization system",
+    category: "maintenance"
   }
 ];
 
@@ -103,16 +97,16 @@ const BestSelling = () => {
                   </div>
                 </div>
 
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 line-clamp-2">
                   {product.description}
                 </p>
 
                 <div className="flex items-center justify-between">
-                  <div>
+                  <div className="flex flex-col">
                     <span className="text-xl font-bold text-gray-900 dark:text-white">
                       ₹{product.price.toLocaleString()}
                     </span>
-                    <span className="ml-2 text-sm text-gray-500 line-through">
+                    <span className="text-sm text-gray-500 line-through">
                       ₹{product.originalPrice.toLocaleString()}
                     </span>
                   </div>
